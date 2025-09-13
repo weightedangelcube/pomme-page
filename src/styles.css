@@ -5,7 +5,7 @@
 @import './clock/clock.css';
 @import './search/search.css';
 @import './binance/binance.css';
-@import './openweather/openweather.css';
+@import './weather/weather.css';
 @import './unsplash/unsplash.css';
 @import './stormglass/stormglass.css';
 
@@ -42,27 +42,36 @@ textarea {
 /************** FONTS **************/
 
 @font-face {
-  font-family: ubuntu-regular;
-  src: local('ubuntu'), url('../assets/fonts/Ubuntu-Regular.woff') format('woff');
+  font-family: Inter;
+  src: local('Inter Variable') format('ttf');
+}
+
+@font-face {
+  font-family: 'Symbols Nerd Font';
+  src: local('Symbols Nerd Font') format('ttf');
 }
 
 /************** VARIABLES **************/
 
 :root {
   /* colors */
-  --main: hsl(220, 21%, 17%);
-  --main-light: hsl(30, 35%, 40%);
-  --module-background: hsl(31, 77%, 60%);
-  --search-background: hsl(4, 100%, 74%);
-  --pomme-background: hsl(118, 18%, 66%);
-  --myrtille-background: hsl(235, 17%, 63%);
+  --main: hsl(229, 19%, 23%);
+  --main-light: ;
+  --module-background: hsl(277, 59%, 76%);
+  --search-background: hsl(316, 73%, 84%);
+  --pomme: hsl(229, 13%, 52%);
+  --pomme-background: hsl(229, 19%, 23%);
+  --pomme-alt-background: hsl(227, 70%, 87%);
+  --myrtille: hsl(189, 48%, 73%);
+  --myrtille-background: hsl(229, 19%, 23%);
 
   /* font-family */
-  --font-family-sans: ubuntu, 'Helvetica Neue', system-ui, -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, sans-serif;
+  --font-family-sans: 'Inter', 'Symbols Nerd Font';
 
   /* font weights */
   --font-weight-regular: 400;
   --font-weight-bold: 700;
+  --border-radius: 20px;
 
   /* font Modular scale */
   --scale-000: 0.75rem; /* 12px */
@@ -116,7 +125,15 @@ grid {
 pomme {
   grid-row: span 2;
   background-color: var(--pomme-background);
-  border-radius: 10px;
+  border: 2px solid var(--pomme);
+  border-radius: var(--border-radius);
+  animation: fadein-page 200ms ease-out normal backwards;
+}
+
+pomme-alt {
+  grid-row: span 2;
+  background-color: var(--pomme-alt-background);
+  border-radius: var(--border-radius);
   animation: fadein-page 200ms ease-out normal backwards;
 }
 

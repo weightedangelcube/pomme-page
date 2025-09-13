@@ -8,12 +8,13 @@
   width: 100%;
   height: 100%;
   background-color: var(--myrtille-background);
-  border-radius: 10px;
+  border: 2px solid var(--myrtille);
+  border-radius: var(--border-radius);
   transition: 100ms ease-in-out;
   animation: fadein-page 300ms ease-out normal backwards;
 }
 
 .myrtille-link svg {
   width: 50%;
-  fill: var(--main);
+  fill: var(--myrtille);
 }
