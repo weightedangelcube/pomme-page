@@ -4,8 +4,8 @@ import {startMyrtilleModule} from './myrtille/myrtille.js'
 import {startRaisinModule} from './raisin/raisin.js'
 import {startClockModule} from './clock/clock.js'
 import {startSearchModule} from './search/search.js'
-import {startBinanceModule} from './binance/binance.js'
-import {startOpenWeatherModule} from './openweather/openweather.js'
+// import {startBinanceModule} from './binance/binance.js'
+import {startWeatherModule} from './weather/weather.js'
 import {startUnsplashModule} from './unsplash/unsplash.js'
 import {startStormglassModule} from './stormglass/stormglass.js'
 // Import {startNewsapiModule} from './newsapi/newsapi.js'
@@ -23,10 +23,10 @@ startClockModule()
 startSearchModule()
 
 // Binance
-startBinanceModule()
+// startBinanceModule()
 
-// Openweather
-startOpenWeatherModule()
+// Weather
+startWeatherModule()
 
 // Unsplash
 startUnsplashModule()
