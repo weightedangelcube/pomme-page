@@ -6,6 +6,7 @@
  */
 export function startRaisinModule() {
   getHostnameOnHover()
+  openLink()
 }
 
 /**
@@ -21,6 +22,17 @@ function getHostnameOnHover() {
       if (searchInput) {
         searchInput.placeholder = link.hostname
       }
+    })
+  }
+}
+
+function openLink() {
+  const raisinLinks = [...document.querySelectorAll('.raisin-link')]
+
+  for (const link of raisinLinks) {
+    link.addEventListener('click', event => {
+      event.preventDefault()
+      window.open(link.getAttribute('href'), '_self')
     })
   }
 }

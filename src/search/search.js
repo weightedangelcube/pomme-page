@@ -8,23 +8,12 @@ const iconList = document.querySelectorAll('.pp-search-icon')
  */
 export function startSearchModule() {
   const searchContainer = document.querySelector('pp-search')
-  const buttonsContainer = document.querySelector('pp-engine-buttons')
+  
+  document.addEventListener('keydown', () => {
+    document.querySelector('.pp-search-input').focus()
+  })
 
-  buttonsContainer.addEventListener('click', toggleEngineIcons)
   searchContainer.addEventListener('keypress', sendSearch)
-}
-
-/**
- * Toggle icon display based on custom html attribute found through the click event
- * @param {Object} event the event object that contains click target data
- * @returns {void} Nothing
- */
-function toggleEngineIcons(event) {
-  for (const icon of iconList) {
-    icon.dataset.state = 'inactive'
-  }
-
-  event.target.dataset.state = 'active'
 }
 
 /**
@@ -37,11 +26,10 @@ function sendSearch(event) {
   const input = document.querySelector('.pp-search-input')
 
   if (event.key === 'Enter') {
-    const activeEngine = [...iconList].find(b => b.dataset.state === 'active')
-    const activeEngineDomain = activeEngine.dataset.address
-    const url = `${activeEngineDomain}?q=${input.value}`
-
-    window.open(url)
+    const domain = "https://www.google.com/search"
+    const url = `${domain}?q=${input.value}&udm=14`
+    console.log("enter logged")
+    window.open(url, "_self")
     input.value = ''
   }
 }

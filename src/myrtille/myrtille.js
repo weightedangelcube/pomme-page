@@ -6,6 +6,7 @@
  */
 export function startMyrtilleModule() {
   getHostnameOnHover()
+  openLink()
 }
 
 /**
@@ -21,6 +22,17 @@ function getHostnameOnHover() {
       if (searchInput) {
         searchInput.placeholder = link.hostname
       }
+    })
+  }
+}
+
+function openLink() {
+  const myrtilleLinks = [...document.querySelectorAll('.myrtille-link')]
+
+  for (const link of myrtilleLinks) {
+    link.addEventListener('click', event => {
+      event.preventDefault()
+      window.open(link.getAttribute('href'), '_self')
     })
   }
 }
