@@ -81,8 +81,9 @@ pp-weather-humid {
 }
 
 pp-weather-back {
-  color: var(--main);
-  background-color: var(--myrtille-background);
+  color: var(--module-background);
+  background-color: var(--main);
+  border: 2px solid var(--module-background);
   border-radius: 10px;
   transform: rotateY(-180deg);
 }

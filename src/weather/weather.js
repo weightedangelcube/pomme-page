@@ -13,6 +13,7 @@ export async function startWeatherModule() {
   const data = await getWeatherData()
 
   fillWeatherDomElements(data, dom)
+  console.log(data.current.weather_code)
   weatherInner.addEventListener('click', toggleWeatherDisplay)
   loaderContainer.style.display = 'none'
   dom.container.style.display = 'flex'
@@ -24,13 +25,11 @@ export async function startWeatherModule() {
  * @returns {Promise} Promise object
  */
 async function getWeatherData() {
-  const url = 'https://api.open-meteo.com/v1/forecast?daily=sunrise,sunset&current=temperature_2m,relative_humidity_2m'
+  const url = 'https://api.open-meteo.com/v1/forecast?daily=sunrise,sunset&current=temperature_2m,relative_humidity_2m,weather_code&timezone=auto'
   const latitude = process.env.WEATHER_LATITUDE_QUERY
   const longitude = process.env.WEATHER_LONGITUDE_QUERY
   const temperature_unit = process.env.WEATHER_TEMPERATURE_UNIT
   const response = await fetch(`${url}&latitude=${latitude}&longitude=${longitude}&temperature_unit=${temperature_unit}`)
-
-  console.log("weather got")
 
   if (!response.ok) {
     displayweatherErrorOnPage(response)
@@ -63,13 +62,105 @@ function catchWeatherDomElements() {
  * @returns {void} Nothing
  */
 function fillWeatherDomElements(data, dom) {
+  let weatherState
+  
+  // I wasn't quite sure how else to implement this
+  // Please don't look at this code
+  switch (data.current.weather_code) {
+    case 0:
+      weatherState = 'clear'
+      break
+    case 1:
+      weatherState = 'clear'
+      break
+    case 2:
+      weatherState = 'clouds'
+      break
+    case 3:
+      weatherState = 'clouds'
+      break
+    case 45:
+      weatherState = 'fog'
+      break
+    case 48:
+      weatherState = 'fog'
+      break
+    case 51:
+      weatherState = 'drizzle'
+      break
+    case 53:
+      weatherState = 'drizzle'
+      break
+    case 55:
+      weatherState = 'drizzle'
+      break
+    case 56:
+      weatherState = 'drizzle'
+      break
+    case 57:
+      weatherState = 'drizzle'
+      break
+    case 61:
+      weatherState = 'rain'
+      break
+    case 63:
+      weatherState = 'rain'
+      break
+    case 65:
+      weatherState = 'rain'
+      break
+    case 66:
+      weatherState = 'rain'
+      break
+    case 67:
+      weatherState = 'rain'
+      break
+    case 80:
+      weatherState = 'rain'
+      break
+    case 81:
+      weatherState = 'rain'
+      break
+    case 82:
+      weatherState = 'rain'
+      break
+    case 71:
+      weatherState = 'snow'
+      break
+    case 73:
+      weatherState = 'snow'
+      break
+    case 75:
+      weatherState = 'snow'
+      break
+    case 77:
+      weatherState = 'snow'
+      break
+    case 85:
+      weatherState = 'snow'
+      break
+    case 86:
+      weatherState = 'snow'
+      break
+    case 95:
+      weatherState = 'thunderstorm'
+      break
+    case 96:
+      weatherState = 'thunderstorm'
+      break
+    case 99:
+      weatherState = 'thunderstorm'
+      break
+  }
+
   for (const icon of dom.icons) {
-    // icon.dataset.state = icon.dataset.type.includes(data.weather[0].main.toLowerCase()) ? 'show' : 'hide'
+    icon.dataset.state = icon.dataset.type.includes(weatherState) ? 'show' : 'hide'
   }
 
   dom.cityName.innerHTML = process.env.WEATHER_CITY_DISPLAY_NAME
   dom.temperature.innerHTML = data.current.temperature_2m > 0 && data.current.temperature_2m < 10 ? `0${Math.round(data.current.temperature_2m)}°` : `${Math.round(data.current.temperature_2m)}°`
   dom.humid.innerHTML = `${data.current.relative_humidity_2m}%`
+  console.log(data.daily.sunrise[0])
   dom.sunrise.innerHTML = new Date(data.daily.sunrise[0]).toLocaleTimeString(process.env.LOCALE)
   dom.sunset.innerHTML = new Date(data.daily.sunset[0]).toLocaleTimeString(process.env.LOCALE)
 }
