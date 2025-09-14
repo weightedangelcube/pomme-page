@@ -38,8 +38,9 @@ pp-clock-front {
 }
 
 pp-clock-back {
-  color: var(--main);
-  background-color: var(--myrtille-background);
+  color: var(--module-background);
+  background-color: var(--main);
+  border: 2px solid var(--module-background);
   border-radius: var(--border-radius);
   transform: rotateX(180deg);
 }
@@ -48,9 +49,14 @@ pp-clock-inner.is-flipped {
   transform: rotateX(-180deg);
 }
 
-.pp-clock-time,
-.pp-clock-date {
+.pp-clock-time {
   color: var(--main);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--scale-3);
+}
+
+.pp-clock-date {
+  color: var(--module-background);
   font-weight: var(--font-weight-bold);
   font-size: var(--scale-3);
 }
