@@ -13,7 +13,7 @@ export function startSearchModule() {
     document.querySelector('.pp-search-input').focus()
   })
 
-  searchContainer.addEventListener('keypress', sendSearch)
+  searchContainer.addEventListener('keydown', sendSearch)
 }
 
 /**
@@ -26,10 +26,13 @@ function sendSearch(event) {
   const input = document.querySelector('.pp-search-input')
 
   if (event.key === 'Enter') {
-    const domain = "https://www.google.com/search"
-    const url = `${domain}?q=${input.value}&udm=14`
-    console.log("enter logged")
-    window.open(url, "_self")
+    if (input.value.match(/^[a-zA-Z]+((\.[a-zA-Z]+)*)$/gm)) {
+      window.open(`https://${input.value}/`, "_self")
+    } else {
+      const domain = "https://www.google.com/search"
+      window.open(`${domain}?q=${input.value}&udm=14`, "_self")
+    }
+    
     input.value = ''
   }
 }
