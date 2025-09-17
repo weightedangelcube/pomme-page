@@ -26,5 +26,9 @@
     "stylelint-config-standard": "^22.0.0",
     "stylelint-group-selectors": "^1.0.8",
     "xo": "^0.48.0"
+  },
+  "dependencies": {
+    "@lucide/astro": "^0.544.0",
+    "astro": "^5.13.7"
   }
 }
