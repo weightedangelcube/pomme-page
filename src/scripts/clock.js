@@ -22,7 +22,7 @@ function displayTime() {
   const m = d.getMinutes()
   const s = d.getSeconds()
 
-  const day = d.toLocaleDateString(process.env.LOCALE, {weekday: 'short'}).toUpperCase()
+  const day = d.toLocaleDateString(import.meta.env.PUBLIC_LOCALE, {weekday: 'short'}).toUpperCase()
   const hour = h < 10 ? `0${h}` : h
   const minute = m < 10 ? `0${m}` : m
   const second = s < 10 ? `0${s}` : s
@@ -40,7 +40,7 @@ function displayDate() {
   const today = new Date()
   const options = {year: 'numeric', month: 'short', day: 'numeric'}
 
-  document.querySelector('.pp-clock-date').innerHTML = today.toLocaleDateString(process.env.LOCALE, options)
+  document.querySelector('.pp-clock-date').innerHTML = today.toLocaleDateString(import.meta.env.PUBLIC_LOCALE, options)
 }
 
 /**
