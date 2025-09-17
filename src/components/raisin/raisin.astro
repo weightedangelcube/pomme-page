@@ -1,0 +1,47 @@
+---
+import "../../styles/raisin.css"
+
+const { content } = Astro.props
+
+let currentRaisin
+
+function link(title: string, url: string) {
+    this.title = title
+    this.url = url
+}
+
+function raisin(title: string, links: typeof link[]) {
+    this.title = title
+    this.links = links
+}
+
+let design = new raisin(
+    "design",
+    [
+        new link(" godly.website", "https://godly.website/"),
+        new link("󰸌 found.color", "https://foundcolor.co/"),
+        new link(" colorcontrast.app", "https://colorcontrast.app/"),
+        new link("󰅴 developer.mozilla", "https://developer.mozilla.org/"),            
+    ]
+)
+
+let raisins = [design]
+
+raisins.forEach((_raisin) => {
+    if (_raisin.title === content) {
+        currentRaisin = _raisin
+    }
+})
+
+---
+<raisin>
+    <raisin-header>
+        <p class="raisin-title">{currentRaisin.title}</p>
+    </raisin-header>
+    <raisin-links>
+        {currentRaisin.links.map((link) => 
+            <a class="raisin-link" href={link.url}>{link.title}</a> 
+        )}
+    </raisin-links>
+</raisin>
+<!-- This is completely unreadable? -->
