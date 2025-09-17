@@ -1,0 +1,51 @@
+---
+---
+
+<pp-weather>
+    <pp-weather-inner>
+        <pp-weather-front>
+            <pp-weather-icons>
+                <span class="pp-weather-icon" id="clear"></span>
+                <span class="pp-weather-icon" id="part-clouds"></span>
+                <span class="pp-weather-icon" id="clouds"></span>
+                <span class="pp-weather-icon" id="fog"></span>
+                <span class="pp-weather-icon" id="drizzle"></span>
+                <span class="pp-weather-icon" id="freezing-drizzle"></span>
+                <span class="pp-weather-icon" id="rain"></span>
+                <span class="pp-weather-icon" id="snow"></span>
+                <span class="pp-weather-icon" id="thunderstorm"></span>
+            </pp-weather-icons>
+            <pp-weather-city>
+                <p class="city-label">city</p>
+                <p class="city-value"></p>
+            </pp-weather-city>
+            <pp-weather-temp>
+                <p class="temp-label">temperature</p>
+                <p class="temp-value"></p>
+            </pp-weather-temp>
+            <pp-weather-humid>
+                <p class="humid-label">humidity</p>
+                <p class="humid-value"></p>
+            </pp-weather-humid>
+        </pp-weather-front>
+        <pp-weather-back>
+            <!-- <p class="weather-back-sunrise"></p>
+            <pp-weather-linebreak />
+            <p class="weather-back-sunset"></p> -->
+        </pp-weather-back>
+    </pp-weather-inner>
+</pp-weather>
+
+<pp-weather-loader-container>
+    <pp-loader>
+        <pp-loader-dot />
+        <pp-loader-dot />
+        <pp-loader-dot />
+        <pp-loader-dot />
+    </pp-loader>
+</pp-weather-loader-container>
+
+<pp-weather-error-container>
+    <p class="error-notification">API Error</p>
+    <p class="weather-error-code"></p>
+</pp-weather-error-container>

@@ -26,9 +26,9 @@ export async function startWeatherModule() {
  */
 async function getWeatherData() {
   const url = 'https://api.open-meteo.com/v1/forecast?daily=sunrise,sunset&current=temperature_2m,relative_humidity_2m,weather_code&timezone=auto'
-  const latitude = process.env.WEATHER_LATITUDE_QUERY
-  const longitude = process.env.WEATHER_LONGITUDE_QUERY
-  const temperature_unit = process.env.WEATHER_TEMPERATURE_UNIT
+  const latitude = import.meta.env.PUBLIC_WEATHER_LATITUDE_QUERY
+  const longitude = import.meta.env.PUBLIC_WEATHER_LONGITUDE_QUERY
+  const temperature_unit = import.meta.env.PUBLIC_WEATHER_TEMPERATURE_UNIT
   const response = await fetch(`${url}&latitude=${latitude}&longitude=${longitude}&temperature_unit=${temperature_unit}`)
 
   if (!response.ok) {
@@ -50,8 +50,8 @@ function catchWeatherDomElements() {
     humid: document.querySelector('.humid-value'),
     icons: [...document.querySelectorAll('.pp-weather-icon')],
     cityName: document.querySelector('.city-value'),
-    sunrise: document.querySelector('.weather-back-sunrise'),
-    sunset: document.querySelector('.weather-back-sunset'),
+    // sunrise: document.querySelector('.weather-back-sunrise'),
+    // sunset: document.querySelector('.weather-back-sunset'),
   }
 }
 
@@ -74,7 +74,7 @@ function fillWeatherDomElements(data, dom) {
       weatherState = 'clear'
       break
     case 2:
-      weatherState = 'clouds'
+      weatherState = 'part-clouds'
       break
     case 3:
       weatherState = 'clouds'
@@ -95,10 +95,10 @@ function fillWeatherDomElements(data, dom) {
       weatherState = 'drizzle'
       break
     case 56:
-      weatherState = 'drizzle'
+      weatherState = 'freezing-drizzle'
       break
     case 57:
-      weatherState = 'drizzle'
+      weatherState = 'freezing-drizzle'
       break
     case 61:
       weatherState = 'rain'
@@ -110,10 +110,10 @@ function fillWeatherDomElements(data, dom) {
       weatherState = 'rain'
       break
     case 66:
-      weatherState = 'rain'
+      weatherState = 'freezing-rain'
       break
     case 67:
-      weatherState = 'rain'
+      weatherState = 'freezing-rain'
       break
     case 80:
       weatherState = 'rain'
@@ -153,16 +153,20 @@ function fillWeatherDomElements(data, dom) {
       break
   }
 
-  for (const icon of dom.icons) {
-    icon.dataset.state = icon.dataset.type.includes(weatherState) ? 'show' : 'hide'
+  for (const icon of dom.icons) {    
+    if (icon.id === weatherState) {
+      icon.style.display = "inline"
+    } else {
+      icon.style.display = "none"
+    }
   }
 
-  dom.cityName.innerHTML = process.env.WEATHER_CITY_DISPLAY_NAME
+  dom.cityName.innerHTML = import.meta.env.PUBLIC_WEATHER_CITY_DISPLAY_NAME
   dom.temperature.innerHTML = data.current.temperature_2m > 0 && data.current.temperature_2m < 10 ? `0${Math.round(data.current.temperature_2m)}°` : `${Math.round(data.current.temperature_2m)}°`
   dom.humid.innerHTML = `${data.current.relative_humidity_2m}%`
   console.log(data.daily.sunrise[0])
-  dom.sunrise.innerHTML = new Date(data.daily.sunrise[0]).toLocaleTimeString(process.env.LOCALE)
-  dom.sunset.innerHTML = new Date(data.daily.sunset[0]).toLocaleTimeString(process.env.LOCALE)
+  // dom.sunrise.innerHTML = new Date(data.daily.sunrise[0]).toLocaleTimeString(import.meta.env.PUBLIC_LOCALE)
+  // dom.sunset.innerHTML = new Date(data.daily.sunset[0]).toLocaleTimeString(import.meta.env.PUBLIC_LOCALE)
 }
 
 /**

@@ -50,8 +50,9 @@ pp-weather-icons {
   justify-content: center;
 }
 
-pp-weather-icons .pp-weather-icon[data-state='hide'] {
-  display: none;
+.pp-weather-icon {
+  font-size: 4em;
+  margin-bottom: auto;
 }
 
 pp-weather-city,
@@ -84,7 +85,7 @@ pp-weather-back {
   color: var(--module-background);
   background-color: var(--main);
   border: 2px solid var(--module-background);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   transform: rotateY(-180deg);
 }
 
