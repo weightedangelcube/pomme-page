@@ -1,0 +1,56 @@
+---
+import Clock from "../components/clock/clock.astro"
+import Myrtille from "../components/myrtille/myrtille.astro"
+import Raisin from "../components/raisin/raisin.astro"
+import Search from "../components/search/search.astro"
+import Weather from "../components/weather/weather.astro"
+
+import "../styles/styles.css"
+---
+
+<!doctype html>
+<html lang="en-CA">
+	<head>
+
+		<!-- Important metadata, and the like -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width = device-width, initial-scale = 1" />
+        <meta name="robots" content="noindex" />
+		<meta name="generator" content={Astro.generator} />
+		<title>New Tab</title>
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+
+		<!-- JavaScript -->
+		<script src="../scripts/app.js" />
+
+	</head>
+
+    <grid>
+		<Clock />
+		<Search />
+		<pomme />
+		<pomme-alt />
+		<pomme />
+		<pomme />
+		<Weather />
+		<pomme-alt />
+		<pomme />
+		<Raisin content="design" />
+		<pomme />
+		<pomme-alt />
+		<pomme />
+		<Myrtille url="https://github.com/" icon="" />
+		<pomme />
+		<pomme-alt />
+		<pomme />
+		<pomme />
+		<pomme-alt />
+		<pomme />
+		<pomme />
+		<pomme-alt />
+		<pomme />
+		<pomme-alt />
+    </grid>
+</html>
