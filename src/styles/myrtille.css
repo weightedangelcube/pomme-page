@@ -1,8 +1,11 @@
 /************** MYRTILLE **************/
 
+myrtille {
+  grid-row: span 2;
+}
+
 .myrtille-link {
   display: flex;
-  grid-row: span 2;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -14,7 +17,9 @@
   animation: fadein-page 300ms ease-out normal backwards;
 }
 
-.myrtille-link svg {
-  width: 50%;
-  fill: var(--myrtille);
+.myrtille-link span {
+  text-decoration: none;
+  font-size: 4em;
+  margin-bottom: auto;
+  color: var(--myrtille);
 }
