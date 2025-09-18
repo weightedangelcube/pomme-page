@@ -5,7 +5,6 @@
  * @returns {void} Nothing
  */
 export function startRaisinModule() {
-  console.log("loaded")
   getHostnameOnHover()
   openLink()
 }

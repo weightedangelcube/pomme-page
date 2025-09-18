@@ -13,7 +13,6 @@ export async function startWeatherModule() {
   const data = await getWeatherData()
 
   fillWeatherDomElements(data, dom)
-  console.log(data.current.weather_code)
   weatherInner.addEventListener('click', toggleWeatherDisplay)
   loaderContainer.style.display = 'none'
   dom.container.style.display = 'flex'
