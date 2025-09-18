@@ -1,5 +1,10 @@
 let checkboxList
 
+/**
+ * Main exported module function that triggers the API fetch, collects DOM elements, and fills DOM elements.
+ * @async
+ * @returns {void} Nothing
+ */
 export async function startTodoistModule() {
     const dom = catchTodoistDomElements()
     const data = await getTodoistTasks()
@@ -9,6 +14,11 @@ export async function startTodoistModule() {
     addCheckboxListener()
 }
 
+/**
+ * GET data from the Todoist API. Fetches tasks due in the next five days
+ * @async
+ * @returns {Promise} Promise object
+ */
 async function getTodoistTasks() {
     const url = 'https://api.todoist.com/api/v1/tasks/filter?query=5+days'
     const apiKey = import.meta.env.PUBLIC_TODOIST_KEY
@@ -26,12 +36,22 @@ async function getTodoistTasks() {
     return response.json()
 }
 
+/**
+ * Catch DOM elements to be later filled with data
+ * @returns {Object} DOM elements contained in an object
+ */
 function catchTodoistDomElements() {
     return {
         container: document.querySelector("todoist-tasks")
     }
 }
 
+/**
+ * Fill targeted DOM elements with Todoist API data
+ * @param {Object} data Data from the Todoist API 
+ * @param {Object} dom DOM elements to be filled
+ * @returns {void} Nothing
+ */
 function fillTodoistDomElements(data, dom) {
     data.results.sort((a, b) => {
         const dateA = new Date(a.due.date).valueOf()
@@ -54,10 +74,12 @@ function fillTodoistDomElements(data, dom) {
             <span class="todoist-task-due">${dueDate}</span>
         `
     }
-
-    
 }
 
+/**
+ * Adds a listener for checkbox clicks.
+ * @returns {void} Nothing
+ */
 function addCheckboxListener() {
     checkboxList = document.querySelectorAll("todoist-checkbox")
 
