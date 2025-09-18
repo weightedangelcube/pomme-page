@@ -24,9 +24,14 @@ todoist-task {
     flex-direction: row;
     align-items: center;
     width: 100%;
-    border-bottom: 1px dashed var(--main);
+    border-top: 1px dashed var(--main);
     outline: none;
 }
+
+todoist-task:first-child {
+  border-top: none;
+}
+
 
 todoist-task > span {
     font-size: var(--scale-00);
