@@ -12,7 +12,7 @@ pp-weather-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: var(--module-background);
+  background-color: var(--mauve);
   border-radius: var(--border-radius);
   transform-style: preserve-3d;
   transition: transform 300ms;
@@ -40,7 +40,7 @@ pp-weather-back {
 }
 
 pp-weather-front {
-  color: var(--main);
+  color: var(--base);
 }
 
 pp-weather-icons {
@@ -68,7 +68,7 @@ pp-weather-humid {
 .city-label,
 .temp-label,
 .humid-label {
-  color: var(--main-light);
+  color: var(--base);
   font-weight: var(--font-weight-bold);
   font-size: var(--scale-0);
 }
@@ -76,22 +76,22 @@ pp-weather-humid {
 .city-value,
 .temp-value,
 .humid-value {
-  color: var(--main);
+  color: var(--base);
   font-weight: var(--font-weight-bold);
   font-size: var(--scale-0);
 }
 
 pp-weather-back {
-  color: var(--module-background);
-  background-color: var(--main);
-  border: 2px solid var(--module-background);
+  color: var(--mauve);
+  background-color: var(--base);
+  border: 2px solid var(--mauve);
   border-radius: var(--border-radius);
   transform: rotateY(-180deg);
 }
 
 .pp-weather-time,
 .pp-weather-date {
-  color: var(--main);
+  color: var(--basea);
   font-weight: var(--font-weight-bold);
   font-size: var(--scale-3);
 }
@@ -100,7 +100,7 @@ pp-weather-linebreak {
   width: 80%;
   height: 1px;
   margin: var(--spacing-000) 0;
-  background: var(--main);
+  background: var(--base);
 }
 
 .weather-back-sunrise,
@@ -113,11 +113,11 @@ pp-weather-linebreak {
 pp-weather-loader-container {
   display: flex;
   grid-row: span 4;
-  grid-column: span 1;
+  grid-column: span 2;
   align-items: center;
   justify-content: center;
-  background-color: var(--main);
-  border: 2px solid var(--pomme);
+  background-color: var(--base);
+  border: 2px solid var(--mauve);
   border-radius: var(--border-radius);
 }
 
@@ -125,10 +125,10 @@ pp-weather-error-container {
   display: none;
   flex-direction: column;
   grid-row: span 4;
-  grid-column: span 1;
+  grid-column: span 2;
   align-items: center;
   justify-content: center;
-  background-color: var(--main);
+  background-color: var(--base);
   border: 2px solid var(--search-background);
   border-radius: var(--border-radius);
   animation: module-display 500ms ease-in-out;

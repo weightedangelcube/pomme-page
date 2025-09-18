@@ -5,7 +5,7 @@ todoist {
     grid-row: span 4;
     grid-column: span 3;
     padding: var(--spacing-00) var(--spacing-0);
-    background-color: var(--module-background);
+    background-color: var(--sky);
     border-radius: var(--border-radius);
 }
 
@@ -19,12 +19,12 @@ todoist-task {
     margin-bottom: 0.1em;
     padding: var(--spacing-0000) 0;
     overflow: hidden;
-    color: var(--main);
+    color: var(--base);
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 100%;
-    border-top: 1px dashed var(--main);
+    border-top: 1px dashed var(--base);
     outline: none;
 }
 

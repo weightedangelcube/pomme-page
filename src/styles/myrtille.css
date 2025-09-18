@@ -10,8 +10,8 @@ myrtille {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: var(--myrtille-background);
-  border: 2px solid var(--myrtille);
+  background-color: var(--base);
+  border: 2px solid var(--sky);
   border-radius: var(--border-radius);
   transition: 100ms ease-in-out;
   animation: fadein-page 300ms ease-out normal backwards;
@@ -21,5 +21,5 @@ myrtille {
   text-decoration: none;
   font-size: 4em;
   margin-bottom: auto;
-  color: var(--myrtille);
+  color: var(--sky);
 }

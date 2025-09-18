@@ -56,15 +56,32 @@ textarea {
 
 :root {
   /* colors */
-  --main: hsl(229, 19%, 23%);
-  --main-light: ;
-  --module-background: hsl(277, 59%, 76%);
-  --search-background: hsl(316, 73%, 84%);
-  --pomme: hsl(229, 13%, 52%);
-  --pomme-background: hsl(229, 19%, 23%);
-  --pomme-alt-background: hsl(227, 70%, 87%);
-  --myrtille: hsl(189, 48%, 73%);
-  --myrtille-background: hsl(229, 19%, 23%);
+  --rosewater: #f2d5cf;
+  --flamingo: #eebebe;
+  --pink: #f4b8e4;
+  --mauve: #ca9ee6;
+  --red: #e78284;
+  --maroon: #ea999c;
+  --peach: #ef9f76;
+  --yellow: #e5c890;
+  --green: #a6d189;
+  --teal: #81c8be;
+  --sky: #99d1db;
+  --sapphire: #85c1dc;
+  --blue: #8caaee;
+  --lavender: #babbf1;
+  --text: #c6d0f5;
+  --subtext1: #b5bfe2;
+  --subtext0: #a5adce;
+  --overlay2: #949cbb;
+  --overlay1: #838ba7;
+  --overlay0: #737994;
+  --surface2: #626880;
+  --surface1: #51576d;
+  --surface0: #414559;
+  --base: #303446;
+  --mantle: #292c3c;
+  --crust: #232634;
 
   /* font-family */
   --font-family-sans: 'Inter', 'Symbols Nerd Font';
@@ -107,7 +124,7 @@ textarea {
 /************** GLOBAL STYLES **************/
 
 html {
-  background-color: var(--main);
+  background-color: var(--base);
 }
 
 body {
@@ -126,15 +143,15 @@ grid {
 
 pomme {
   grid-row: span 2;
-  background-color: var(--pomme-background);
-  border: 2px solid var(--pomme);
+  background-color: var(--base);
+  border: 2px solid var(--overlay0);
   border-radius: var(--border-radius);
   animation: fadein-page 200ms ease-out normal backwards;
 }
 
 pomme-alt {
   grid-row: span 2;
-  background-color: var(--pomme-alt-background);
+  background-color: var(--text);
   border-radius: var(--border-radius);
   animation: fadein-page 200ms ease-out normal backwards;
 }
@@ -158,7 +175,7 @@ pp-loader-alt {
 pp-loader-dot {
   width: var(--spacing-1);
   height: var(--spacing-1);
-  background-color: var(--main);
+  background-color: var(--base);
   border-radius: 50%;
   animation: loader-animation 1s linear 1s infinite alternate;
 }
@@ -180,7 +197,7 @@ pp-loader-dot:nth-child(4) {
 }
 
 .error-notification {
-  color: var(--search-background);
+  color: var(--pink);
   font-weight: var(--font-weight-regular);
   font-size: var(--scale-2);
 }
@@ -193,7 +210,7 @@ pp-loader-dot:nth-child(4) {
 }
 
 @keyframes loader-animation {
-  100% { background-color: var(--module-background); }
+  100% { background-color: var(--mauve); }
 }
 
 @keyframes fadein-page {

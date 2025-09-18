@@ -7,15 +7,15 @@ raisin {
   grid-column: span 2;
   justify-content: space-between;
   padding: var(--spacing-00) var(--spacing-0);
-  background-color: var(--main);
-  border: 2px solid var(--pomme);
+  background-color: var(--base);
+  border: 2px solid var(--overlay0);
   border-radius: var(--border-radius);
   animation: fadein-page 50ms ease-out normal backwards;
   animation-delay: 50ms;
 }
 
 .raisin-title {
-  color: var(--pomme-alt-background);
+  color: var(--text);
   font-weight: var(--font-weight-bold);
   font-size: var(--scale-1);
 }
@@ -30,12 +30,12 @@ raisin-links {
   padding: var(--spacing-0000) 0;
   overflow: hidden;
   color: inherit;
-  color: var(--pomme-alt-background);
+  color: var(--text);
   font-size: var(--scale-00);
   white-space: nowrap;
   text-decoration: none;
   text-overflow: ellipsis;
-  border-top: 1px dashed var(--pomme-alt-background);
+  border-top: 1px dashed var(--text);
   outline: none;
   transition: 200ms;
 }
@@ -45,6 +45,6 @@ raisin-links {
 }
 
 .raisin-link:hover {
-  color: var(--myrtille);
+  color: var(--sky);
   text-decoration: wavy underline;
 }

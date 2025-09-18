@@ -7,7 +7,7 @@ pp-search {
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--spacing-0);
-  background-color: var(--search-background);
+  background-color: var(--pink);
   border-radius: var(--border-radius);
   animation: fadein-page 250ms ease-out normal backwards;
   animation-delay: 150ms;
@@ -43,12 +43,12 @@ pp-engine-buttons {
   min-width: 0;
   margin: 0 var(--spacing-000) 0 24px;
   padding: var(--spacing-0000) 0;
-  color: var(--main);
+  color: var(--base);
   font-size: var(--scale-2);
   background-color: transparent;
   background-image: none;
   border: none;
-  border-bottom: 1px dashed var(--main);
+  border-bottom: 1px dashed var(--base);
   box-shadow: none;
 }
 
