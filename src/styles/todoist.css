@@ -54,3 +54,23 @@ todoist-task > span {
 todoist-checkbox:hover {
     cursor: pointer;
 }
+
+@keyframes strikethrough {
+    0%   { width: 0;   }
+    100% { width: 100%; }
+}
+
+.todoist-task-strikethrough {
+    position: relative;
+}
+
+.todoist-task-strikethrough::after {
+    content: ' ';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--base);
+    animation: 0.3s cubic-bezier(0.5, 1, 0.89, 1) strikethrough;
+}

@@ -9,7 +9,6 @@ export async function startTodoistModule() {
     const dom = catchTodoistDomElements()
     const data = await getTodoistTasks()
     
-
     fillTodoistDomElements(data, dom)
     addCheckboxListener()
 }
@@ -66,6 +65,7 @@ function fillTodoistDomElements(data, dom) {
             .toLocaleDateString(import.meta.env.PUBLIC_LOCALE, {year: 'numeric', month: 'numeric', day: 'numeric'})
 
         let taskContainer = document.createElement("todoist-task")
+        taskContainer.id = `todoist-task-${task.id}`
 
         dom.container.append(taskContainer)
         taskContainer.innerHTML = `
@@ -84,12 +84,40 @@ function addCheckboxListener() {
     checkboxList = document.querySelectorAll("todoist-checkbox")
 
     for (const checkbox of checkboxList) {
-        checkbox.addEventListener('click', function () {
-            toggleTaskChecked(this)
+        checkbox.addEventListener('click', async function () {
+            await toggleTaskChecked(this)
         })
     }
 }
 
-function toggleTaskChecked(element) {
-    element.innerHTML = (element.innerHTML === "") ? "" : ""
+async function toggleTaskChecked(checkbox) {
+    const taskID = checkbox.parentNode.id.replace("todoist-task-", "")
+
+    checkbox.innerHTML = (checkbox.innerHTML === "") ? "" : ""
+    checkbox.nextElementSibling.classList.add("todoist-task-strikethrough")
+    // sleep one second while we wait for css animation
+    await new Promise(r => setTimeout(r, 1000))
+    document.getElementById(`todoist-task-${taskID}`).remove()
+    
+    const commands = `[{
+        "type": "item_complete",
+        "uuid": "${self.crypto.randomUUID()}",
+        "args": {
+            "id": "${taskID}",
+            "date_completed": "${new Date().toISOString()}"
+        }
+    }]`
+    const url = `https://api.todoist.com/api/v1/sync?commands=${commands}`
+    const apiKey = import.meta.env.PUBLIC_TODOIST_KEY
+    const request = new Request(url, {
+        method: "POST",
+        headers: new Headers({
+            "Authorization": `Bearer ${apiKey}`
+        })
+    })
+    const response = await fetch(request)
+    if (!response.ok) {
+        // TODO: display error on page somehow
+        throw new Error(`An error has occured: ${response.status} ${response.statusText}`)
+    }
 }
