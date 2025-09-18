@@ -19,7 +19,7 @@ export async function startWeatherModule() {
 }
 
 /**
- * GET data fron the weather API
+ * GET data from the weather API
  * @async
  * @returns {Promise} Promise object
  */
