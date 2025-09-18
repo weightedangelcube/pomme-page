@@ -29,16 +29,25 @@ function catchTodoistDomElements() {
 }
 
 function fillTodoistDomElements(data, dom) {
+    data.results.sort((a, b) => {
+        const dateA = new Date(a.due.date).valueOf()
+        const dateB = new Date(b.due.date).valueOf()
+
+        return dateA - dateB
+    })
+
     console.log(data.results)
     for (let task of data.results) {
-        
+        let dueDate = new Date(task.due.date)
+            .toLocaleDateString(import.meta.env.PUBLIC_LOCALE, {year: 'numeric', month: 'numeric', day: 'numeric'})
+
         let taskContainer = document.createElement("todoist-task")
 
         dom.container.append(taskContainer)
         taskContainer.innerHTML = `
             <todoist-checkbox></todoist-checkbox>
             <span class="todoist-task-label">${task.content}</span>
-            <span class="todoist-task-due">${task.due.date}</span>
+            <span class="todoist-task-due">${dueDate}</span>
         `
     }
 }
