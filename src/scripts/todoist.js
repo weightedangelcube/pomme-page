@@ -37,7 +37,8 @@ function fillTodoistDomElements(data, dom) {
         dom.container.append(taskContainer)
         taskContainer.innerHTML = `
             <todoist-checkbox></todoist-checkbox>
-            <span>${task.content}</span>
+            <span class="todoist-task-label">${task.content}</span>
+            <span class="todoist-task-due">${task.due.date}</span>
         `
     }
 }
