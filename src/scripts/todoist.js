@@ -1,8 +1,12 @@
+let checkboxList
+
 export async function startTodoistModule() {
     const dom = catchTodoistDomElements()
     const data = await getTodoistTasks()
+    
 
     fillTodoistDomElements(data, dom)
+    addCheckboxListener()
 }
 
 async function getTodoistTasks() {
@@ -50,4 +54,20 @@ function fillTodoistDomElements(data, dom) {
             <span class="todoist-task-due">${dueDate}</span>
         `
     }
+
+    
+}
+
+function addCheckboxListener() {
+    checkboxList = document.querySelectorAll("todoist-checkbox")
+
+    for (const checkbox of checkboxList) {
+        checkbox.addEventListener('click', function () {
+            toggleTaskChecked(this)
+        })
+    }
+}
+
+function toggleTaskChecked(element) {
+    element.innerHTML = (element.innerHTML === "") ? "" : ""
 }

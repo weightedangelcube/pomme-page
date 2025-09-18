@@ -32,7 +32,6 @@ todoist-task:first-child {
   border-top: none;
 }
 
-
 todoist-task > span {
     font-size: var(--scale-00);
     white-space: nowrap;
@@ -50,4 +49,8 @@ todoist-task > span {
     position: absolute;
     right: 0;
     flex-grow: 1
+}
+
+todoist-checkbox:hover {
+    cursor: pointer;
 }
