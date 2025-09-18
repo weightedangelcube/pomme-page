@@ -4,6 +4,7 @@ import {startMyrtilleModule} from './myrtille.js'
 import {startRaisinModule} from './raisin.js'
 import {startClockModule} from './clock.js'
 import {startSearchModule} from './search.js'
+import {startTodoistModule} from './todoist.js'
 // import {startBinanceModule} from './binance/binance.js'
 import {startWeatherModule} from './weather.js'
 // import {startUnsplashModule} from '../unsplash/unsplash.js'
@@ -21,6 +22,8 @@ startClockModule()
 
 // Search
 startSearchModule()
+
+startTodoistModule()
 
 // Binance
 // startBinanceModule()

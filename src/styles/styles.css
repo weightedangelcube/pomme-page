@@ -4,6 +4,7 @@
 @import './raisin.css';
 @import './clock.css';
 @import './search.css';
+@import './todoist.css';
 /* @import './binance/binance.css'; */
 @import './weather.css';
 /* @import './unsplash/unsplash.css'; */
@@ -110,6 +111,7 @@ html {
 }
 
 body {
+  overflow: hidden;
   padding: var(--spacing-4);
   font-family: var(--font-family-sans);
 }
