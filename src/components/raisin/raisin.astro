@@ -3,19 +3,30 @@ import "../../styles/raisin.css"
 
 const { content } = Astro.props
 
-let currentRaisin
+class link {
+    title: string
+    url: string
 
-function link(title: string, url: string) {
-    this.title = title
-    this.url = url
+    constructor(title: string, url: string) {
+        this.title = title
+        this.url = url
+    }
 }
 
-function raisin(title: string, links: typeof link[]) {
-    this.title = title
-    this.links = links
+class raisin {
+    title: string
+    links: link[]
+
+    constructor(title: string, links: link[]) {
+        this.title = title
+        this.links = links
+    }
 }
 
-let design = new raisin(
+// Initialize an empty raisin to satisify TypeScript
+let currentRaisin = new raisin("", [])
+
+const design = new raisin(
     "design",
     [
         new link(" godly.website", "https://godly.website/"),
@@ -25,7 +36,7 @@ let design = new raisin(
     ]
 )
 
-let raisins = [design]
+const raisins = [design]
 
 raisins.forEach((_raisin) => {
     if (_raisin.title === content) {
