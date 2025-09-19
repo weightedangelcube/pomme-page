@@ -1,7 +1,7 @@
 ---
 import "../../styles/raisin.css"
 
-const { content } = Astro.props
+const { title, links } = Astro.props
 
 class link {
     title: string
@@ -23,26 +23,10 @@ class raisin {
     }
 }
 
-// Initialize an empty raisin to satisify TypeScript
-let currentRaisin = new raisin("", [])
-
-const design = new raisin(
-    "design",
-    [
-        new link(" godly.website", "https://godly.website/"),
-        new link("󰸌 found.color", "https://foundcolor.co/"),
-        new link(" colorcontrast.app", "https://colorcontrast.app/"),
-        new link("󰅴 developer.mozilla", "https://developer.mozilla.org/"),            
-    ]
+let currentRaisin = new raisin(
+    title,
+    JSON.parse(links)
 )
-
-const raisins = [design]
-
-raisins.forEach((_raisin) => {
-    if (_raisin.title === content) {
-        currentRaisin = _raisin
-    }
-})
 
 ---
 <raisin>
