@@ -20,7 +20,7 @@ export async function startTodoistModule() {
  */
 async function getTodoistTasks() {
     const url = 'https://api.todoist.com/api/v1/tasks/filter?query=5+days'
-    const apiKey = import.meta.env.PUBLIC_TODOIST_KEY
+    const apiKey = import.meta.env.PUBLIC_TODOIST_TOKEN
     const request = new Request(url, {
         method: "GET",
         headers: new Headers({
@@ -59,7 +59,6 @@ function fillTodoistDomElements(data, dom) {
         return dateA - dateB
     })
 
-    console.log(data.results)
     for (let task of data.results) {
         let dueDate = new Date(task.due.date)
             .toLocaleDateString(import.meta.env.PUBLIC_LOCALE, {year: 'numeric', month: 'numeric', day: 'numeric'})
@@ -108,7 +107,7 @@ async function toggleTaskChecked(checkbox) {
         }
     }]`
     const url = `https://api.todoist.com/api/v1/sync?commands=${commands}`
-    const apiKey = import.meta.env.PUBLIC_TODOIST_KEY
+    const apiKey = import.meta.env.PUBLIC_TODOIST_TOKEN
     const request = new Request(url, {
         method: "POST",
         headers: new Headers({
