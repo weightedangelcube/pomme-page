@@ -37,6 +37,7 @@ textarea {
 *,
 *::before,
 *::after {
+  font-variant: styleset(ss02) !important;
   box-sizing: border-box;
 }
 
@@ -45,6 +46,37 @@ textarea {
 @font-face {
   font-family: Inter;
   src: local('Inter Variable') format('ttf');
+}
+
+@font-feature-values Inter {
+    @character-variant {
+        cv01: 1; cv02: 2; cv03: 3; cv04: 4; cv05: 5; cv06: 6; cv07: 7; cv08: 8;
+        cv09: 9; cv10: 10; cv11: 11; cv12: 12; cv13: 13;
+        alt-1:            1; /* Alternate one */
+        alt-3:            9; /* Flat-top three */
+        open-4:           2; /* Open four */
+        open-6:           3; /* Open six */
+        open-9:           4; /* Open nine */
+        lc-l-with-tail:   5; /* Lower-case L with tail */
+        simplified-u:     6; /* Simplified u */
+        alt-double-s:     7; /* Alternate German double s */
+        uc-i-with-serif:  8; /* Upper-case i with serif */
+        uc-g-with-spur:  10; /* Capital G with spur */
+        single-story-a:  11; /* Single-story a */
+        compact-lc-f:    12; /* Compact f */
+        compact-lc-t:    13; /* Compact t */
+    }
+    @styleset {
+        ss01: 1; ss02: 2; ss03: 3; ss04: 4; ss05: 5; ss06: 6; ss07: 7; ss08: 8;
+        open-digits: 1;                /* Open digits */
+        disambiguation: 2;             /* Disambiguation (with zero) */
+        disambiguation-except-zero: 4; /* Disambiguation (no zero) */
+        round-quotes-and-commas: 3;    /* Round quotes &amp; commas */
+        square-punctuation: 7;         /* Square punctuation */
+        square-quotes: 8;              /* Square quotes */
+        circled-characters: 5;         /* Circled characters */
+        squared-characters: 6;         /* Squared characters */
+    }
 }
 
 @font-face {
@@ -85,11 +117,27 @@ textarea {
 
   /* font-family */
   --font-family-sans: 'Inter', 'Symbols Nerd Font';
+  --font-family: 'Inter', 'Symbols Nerd Font';
 
   /* font weights */
   --font-weight-regular: 400;
-  --font-weight-bold: 700;
+  --font-weight-bold: 600;
+
+  /* 1rem = 16px! */
+  --font-size-heading: 1.5rem; /* 24px */
+  --font-size-subheading: 1.25rem;
+  --font-size-body: 0.875rem;
+  
+  --font-heading: var(--font-weight-bold) var(--font-size-heading) var(--font-family);
+  --font-subheading: var(--font-weight-bold) var(--font-size-subheading) var(--font-family);
+  --font-body: var(--font-weight-regular) var(--font-size-body) var(--font-family);
+
+  /* Borders */
   --border-radius: 20px;
+  --border-size: 2px;
+
+  --loader-dot-size: 1vw;
+  --loader-dots-gap: 0.75vw;
 
   /* font Modular scale */
   --scale-000: 0.75rem; /* 12px */
@@ -112,10 +160,11 @@ textarea {
   --spacing-4: 64px;
   --spacing-5: 96px;
 
-  /* Widths applied as max-width */
-  --width-00: 120px;
+  --padding-inner: 1.25vw;
 
   /* Grid gaps */
+
+  --grid-gap: 1.25vw;
   --gap-00: 12px;
   --gap-0: 16px;
   --gap-1: 24px;
@@ -128,37 +177,39 @@ html {
 }
 
 body {
-  overflow: hidden;
-  padding: var(--spacing-4);
+  /* padding: var(--spacing-4); */
+  padding: 5vh 5vw;
   font-family: var(--font-family-sans);
 }
 
 grid {
+  margin: auto;
   display: grid;
-  grid-auto-rows: var(--spacing-2);
+  grid-auto-rows: 3.5vh;
   grid-auto-flow: dense;
-  grid-gap: var(--gap-1);
-  grid-template-columns: repeat(auto-fit, minmax(var(--width-00), 1fr));
+  grid-gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fit, minmax(7vw, 1fr));
+
 }
 
 pomme {
   grid-row: span 2;
   background-color: var(--base);
-  border: 2px solid var(--overlay0);
+  border: var(--border-size) solid var(--overlay0);
   border-radius: var(--border-radius);
-  animation: fadein-page 200ms ease-out normal backwards;
+  animation: module-popin 200ms ease-out normal backwards;
 }
 
 pomme-alt {
   grid-row: span 2;
   background-color: var(--text);
   border-radius: var(--border-radius);
-  animation: fadein-page 200ms ease-out normal backwards;
+  animation: module-popin 200ms ease-out normal backwards;
 }
 
 pp-loader {
   display: grid;
-  grid-gap: var(--gap-00);
+  grid-gap: var(--loader-dots-gap);
   grid-template-areas:
     'pp-loader-dot pp-loader-dot'
     'pp-loader-dot pp-loader-dot';
@@ -173,8 +224,8 @@ pp-loader-alt {
 }
 
 pp-loader-dot {
-  width: var(--spacing-1);
-  height: var(--spacing-1);
+  width: var(--loader-dot-size);
+  height: var(--loader-dot-size);
   background-color: var(--base);
   border-radius: 50%;
   animation: loader-animation 1s linear 1s infinite alternate;
@@ -197,14 +248,14 @@ pp-loader-dot:nth-child(4) {
 }
 
 .error-notification {
-  color: var(--pink);
-  font-weight: var(--font-weight-regular);
-  font-size: var(--scale-2);
+  color: var(--text);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-subheading);
 }
 
 /******* ANIMATION *******/
 
-@keyframes module-display {
+@keyframes module-fadein {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
@@ -213,7 +264,7 @@ pp-loader-dot:nth-child(4) {
   100% { background-color: var(--mauve); }
 }
 
-@keyframes fadein-page {
+@keyframes module-popin {
   0% { transform: scale(0); }
   70% { transform: scale(1.05); }
   100% { transform: scale(1); }
