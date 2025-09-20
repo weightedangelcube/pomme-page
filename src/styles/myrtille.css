@@ -11,15 +11,22 @@ myrtille {
   width: 100%;
   height: 100%;
   background-color: var(--base);
-  border: 2px solid var(--sky);
+  text-decoration: none;
+  color: var(--sky);
+  border: var(--border-size) solid var(--sky);
   border-radius: var(--border-radius);
   transition: 100ms ease-in-out;
-  animation: fadein-page 300ms ease-out normal backwards;
+  animation: module-popin 300ms ease-out normal backwards;
+}
+
+.myrtille-link:hover {
+  background-color: var(--sky);
+  color: var(--base);
 }
 
 .myrtille-link span {
   text-decoration: none;
-  font-size: 4em;
-  margin-bottom: auto;
-  color: var(--sky);
+  font-size: 8vh;
+  margin-bottom: 1.5vh;
+  color: inherit;
 }
