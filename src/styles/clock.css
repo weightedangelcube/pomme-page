@@ -40,7 +40,7 @@ pp-clock-front {
 pp-clock-back {
   color: var(--mauve);
   background-color: var(--base);
-  border: 2px solid var(--mauve);
+  border: var(--border-size) solid var(--mauve);
   border-radius: var(--border-radius);
   transform: rotateX(180deg);
 }
@@ -51,12 +51,10 @@ pp-clock-inner.is-flipped {
 
 .pp-clock-time {
   color: var(--main);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--scale-3);
+  font: var(--font-heading);
 }
 
 .pp-clock-date {
   color: var(--mauve);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--scale-3);
+  font: var(--font-heading);
 }
