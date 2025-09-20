@@ -13,29 +13,10 @@ pp-search {
   animation-delay: 150ms;
 }
 
-pp-engine-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: auto;
-}
-
 .pp-search-icon {
-  width: var(--spacing-2);
-  height: var(--spacing-2);
+  font-size: 4vh;
+  color: var(--base);
   padding: 0;
-  background: none;
-  border: none;
-  outline: inherit;
-  cursor: pointer;
-}
-
-.pp-search-icon[data-state='inactive'] {
-  opacity: 0.5;
-}
-
-.pp-search-icon > path {
-  pointer-events: none;
 }
 
 .pp-search-input {
