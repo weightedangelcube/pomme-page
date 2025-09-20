@@ -19,9 +19,12 @@ export async function startTodoistModule() {
  * @returns {Promise} Promise object
  */
 async function getTodoistTasks() {
-    const url = 'https://api.todoist.com/api/v1/tasks/filter?query=5+days'
+    const url = 'https://api.todoist.com/api/v1/tasks/filter'
+    const params = new URLSearchParams([
+        ["query", "5 days"]
+    ])
     const apiKey = import.meta.env.PUBLIC_TODOIST_TOKEN
-    const request = new Request(url, {
+    const request = new Request(`${url}?${params}`, {
         method: "GET",
         headers: new Headers({
             "Authorization": `Bearer ${apiKey}`
