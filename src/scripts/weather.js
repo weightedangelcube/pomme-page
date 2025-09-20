@@ -24,7 +24,7 @@ export async function startWeatherModule() {
  * @returns {Promise} Promise object
  */
 async function getWeatherData() {
-  const url = 'https://api.open-meteo.com/v1/forecast?daily=sunrise,sunset&current=temperature_2m,relative_humidity_2m,weather_code&timezone=auto'
+  const url = 'https://api.open-meteo.com/v1/forecast?current=temperature_2m,relative_humidity_2m,weather_code,is_day&timezone=auto'
   const latitude = import.meta.env.PUBLIC_WEATHER_LATITUDE_QUERY
   const longitude = import.meta.env.PUBLIC_WEATHER_LONGITUDE_QUERY
   const temperature_unit = import.meta.env.PUBLIC_WEATHER_TEMPERATURE_UNIT
@@ -62,6 +62,7 @@ function catchWeatherDomElements() {
  */
 function fillWeatherDomElements(data, dom) {
   let weatherState
+  const isDay = data.current.is_day ? "day" : "night"
   
   // I wasn't quite sure how else to implement this
   // Please don't look at this code
@@ -153,7 +154,7 @@ function fillWeatherDomElements(data, dom) {
   }
 
   for (const icon of dom.icons) {    
-    if (icon.id === weatherState) {
+    if ((icon.id === weatherState) || (icon.id === `${weatherState}-${isDay}`)) {
       icon.style.display = "inline"
     } else {
       icon.style.display = "none"
@@ -163,7 +164,6 @@ function fillWeatherDomElements(data, dom) {
   dom.cityName.innerHTML = import.meta.env.PUBLIC_WEATHER_CITY_DISPLAY_NAME
   dom.temperature.innerHTML = data.current.temperature_2m > 0 && data.current.temperature_2m < 10 ? `0${Math.round(data.current.temperature_2m)}°` : `${Math.round(data.current.temperature_2m)}°`
   dom.humid.innerHTML = `${data.current.relative_humidity_2m}%`
-  console.log(data.daily.sunrise[0])
   // dom.sunrise.innerHTML = new Date(data.daily.sunrise[0]).toLocaleTimeString(import.meta.env.PUBLIC_LOCALE)
   // dom.sunset.innerHTML = new Date(data.daily.sunset[0]).toLocaleTimeString(import.meta.env.PUBLIC_LOCALE)
 }
