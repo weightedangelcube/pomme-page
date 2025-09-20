@@ -97,9 +97,27 @@ async function toggleTaskChecked(checkbox) {
 
     checkbox.innerHTML = (checkbox.innerHTML === "") ? "" : ""
     checkbox.nextElementSibling.classList.add("todoist-task-strikethrough")
+
     // sleep one second while we wait for css animation
     await new Promise(r => setTimeout(r, 1000))
+
+    checkbox.parentElement.style.display = "none"
+
+    // slide all the tasks up
+    document.querySelectorAll("todoist-task").forEach(task => {
+        task.classList.add("todoist-task-slide-up") 
+    })
+
+    // wait for animation to finish
+    await new Promise(r => setTimeout(r, 300))
+
+    // remove checked task
     document.getElementById(`todoist-task-${taskID}`).remove()
+
+    // remove animation class from tasks
+    document.querySelectorAll("todoist-task").forEach(task => {
+        task.classList.remove("todoist-task-slide-up") 
+    })
     
     const commands = `[{
         "type": "item_complete",
