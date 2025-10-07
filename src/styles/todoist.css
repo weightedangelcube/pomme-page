@@ -9,6 +9,16 @@ todoist {
     border-radius: var(--border-radius);
 }
 
+todoist-error-container {
+	display: none;
+	height: 100%;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: var(--base);
+	animation: module-fadein 500ms ease-in-out;
+}
+
 todoist-tasks {
     position: relative;
     display: flex;
@@ -33,7 +43,6 @@ todoist-task:first-child {
 }
 
 todoist-task > span {
-    /* font-size: var(--font-size-body); */
     font: var(--font-body);
     white-space: nowrap;
     text-decoration: none;

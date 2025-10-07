@@ -25,6 +25,7 @@ async function getTodoistTasks(filter) {
 	if (filter) {
 		params = new URLSearchParams([filter])
 	} else {
+		displayErrorOnPage(`Filter can't be null!`)
 		throw new Error(`Filter can't be null!`)
 	}
 
@@ -37,10 +38,18 @@ async function getTodoistTasks(filter) {
     })
     const response = await fetch(request)
     if (!response.ok) {
-        // TODO: display error on page somehow
-        throw new Error(`An error has occured: ${response.status} ${response.statusText}`)
+        displayErrorOnPage(`${response.status} ${response.statusText}`)
+		throw new Error(`API error ${response.status} ${response.statusText}`)
+
     }
     return response.json()
+}
+
+function displayErrorOnPage(error) {
+	const errorContainer = document.querySelector("todoist-error-container")
+	const errorText = document.querySelector("todoist-error-container > p")
+	errorText.append(error)
+	errorContainer.style.display = "flex"
 }
 
 /**
@@ -143,7 +152,7 @@ async function toggleTaskChecked(checkbox) {
     })
     const response = await fetch(request)
     if (!response.ok) {
-        // TODO: display error on page somehow
-        throw new Error(`An error has occured: ${response.status} ${response.statusText}`)
+		displayErrorOnPage(`${response.status} ${response.statusText}`)
+		throw new Error(`An error has occured: ${response.status} ${response.statusText}`)
     }
 }
