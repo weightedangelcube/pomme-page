@@ -1,32 +1,32 @@
 /************** MYRTILLE **************/
 
 myrtille {
-  grid-row: span 2;
+	grid-row: span 2;
 }
 
 .myrtille-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background-color: var(--base);
-  text-decoration: none;
-  color: var(--sky);
-  border: var(--border-size) solid var(--sky);
-  border-radius: var(--border-radius);
-  transition: 100ms ease-in-out;
-  animation: module-popin 300ms ease-out normal backwards;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-color: var(--base);
+	text-decoration: none;
+	color: var(--sky);
+	border: var(--border-size) solid var(--sky);
+	border-radius: var(--border-radius);
+	transition: 100ms ease-in-out;
+	animation: module-popin 300ms ease-out normal backwards;
 }
 
 .myrtille-link:hover {
-  background-color: var(--sky);
-  color: var(--base);
+	background-color: var(--sky);
+	color: var(--base);
 }
 
 .myrtille-link span {
-  text-decoration: none;
-  font-size: 4em;
-  margin-bottom: auto;
-  color: inherit;
+	text-decoration: none;
+	font-size: 4em;
+	margin-bottom: auto;
+	color: inherit;
 }

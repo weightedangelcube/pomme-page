@@ -1,60 +1,60 @@
 /************** CLOCK **************/
 
 pp-clock {
-  display: flex;
-  grid-row: span 2;
-  grid-column: span 2;
-  background-color: transparent;
-  perspective: 400px;
+	display: flex;
+	grid-row: span 2;
+	grid-column: span 2;
+	background-color: transparent;
+	perspective: 400px;
 }
 
 pp-clock-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: var(--mauve);
-  border-radius: var(--border-radius);
-  transform-style: preserve-3d;
-  transition: transform 300ms;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: var(--mauve);
+	border-radius: var(--border-radius);
+	transform-style: preserve-3d;
+	transition: transform 300ms;
 }
 
 pp-clock-inner:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 pp-clock-front,
 pp-clock-back {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
 }
 
 pp-clock-front {
-  color: var(--base);
+	color: var(--base);
 }
 
 pp-clock-back {
-  color: var(--mauve);
-  background-color: var(--base);
-  border: var(--border-size) solid var(--mauve);
-  border-radius: var(--border-radius);
-  transform: rotateX(180deg);
+	color: var(--mauve);
+	background-color: var(--base);
+	border: var(--border-size) solid var(--mauve);
+	border-radius: var(--border-radius);
+	transform: rotateX(180deg);
 }
 
 pp-clock-inner.is-flipped {
-  transform: rotateX(-180deg);
+	transform: rotateX(-180deg);
 }
 
 .pp-clock-time {
-  color: var(--main);
-  font: var(--font-heading);
+	color: var(--main);
+	font: var(--font-heading);
 }
 
 .pp-clock-date {
-  color: var(--mauve);
-  font: var(--font-heading);
+	color: var(--mauve);
+	font: var(--font-heading);
 }

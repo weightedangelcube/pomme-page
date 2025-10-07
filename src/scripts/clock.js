@@ -1,15 +1,15 @@
 // //////// CLOCK //////// //
 
-const clockContainer = document.querySelector('pp-clock-inner')
+const clockContainer = document.querySelector("pp-clock-inner")
 
 /**
  * Main exported function that sets time, date, and attaches event handler
  * @returns {void} Nothing
  */
 export function startClockModule() {
-  displayTime()
-  displayDate()
-  clockContainer.addEventListener('click', toggleClockDisplay)
+	displayTime()
+	displayDate()
+	clockContainer.addEventListener("click", toggleClockDisplay)
 }
 
 /**
@@ -17,18 +17,20 @@ export function startClockModule() {
  * @returns {void} Nothing
  */
 function displayTime() {
-  const d = new Date()
-  const h = d.getHours()
-  const m = d.getMinutes()
-  const s = d.getSeconds()
+	const d = new Date()
+	const h = d.getHours()
+	const m = d.getMinutes()
+	const s = d.getSeconds()
 
-  const hour = h < 10 ? `0${h}` : h
-  const minute = m < 10 ? `0${m}` : m
-  const second = s < 10 ? `0${s}` : s
+	const hour = h < 10 ? `0${h}` : h
+	const minute = m < 10 ? `0${m}` : m
+	const second = s < 10 ? `0${s}` : s
 
-  document.querySelector('.pp-clock-time').innerHTML = `${hour} : ${minute} : ${second}`
+	document.querySelector(
+		".pp-clock-time"
+	).innerHTML = `${hour} : ${minute} : ${second}`
 
-  setTimeout(displayTime, 1000)
+	setTimeout(displayTime, 1000)
 }
 
 /**
@@ -36,10 +38,11 @@ function displayTime() {
  * @returns {void} Nothing
  */
 function displayDate() {
-  const today = new Date()
-  const options = {year: 'numeric', month: 'short', day: 'numeric'}
+	const today = new Date()
+	const options = { year: "numeric", month: "short", day: "numeric" }
 
-  document.querySelector('.pp-clock-date').innerHTML = today.toLocaleDateString(import.meta.env.PUBLIC_LOCALE, options)
+	document.querySelector(".pp-clock-date").innerHTML =
+		today.toLocaleDateString(import.meta.env.PUBLIC_LOCALE, options)
 }
 
 /**
@@ -47,5 +50,5 @@ function displayDate() {
  * @returns {void} Nothing
  */
 function toggleClockDisplay() {
-  clockContainer.classList.toggle('is-flipped')
+	clockContainer.classList.toggle("is-flipped")
 }

@@ -6,11 +6,11 @@ let checkboxList
  * @returns {void} Nothing
  */
 export async function startTodoistModule() {
-    const dom = catchTodoistDomElements()
-    const data = await getTodoistTasks(dom.filter)
+	const dom = catchTodoistDomElements()
+	const data = await getTodoistTasks(dom.filter)
 
-    fillTodoistDomElements(data, dom)
-    addCheckboxListener()
+	fillTodoistDomElements(data, dom)
+	addCheckboxListener()
 }
 
 /**
@@ -19,7 +19,7 @@ export async function startTodoistModule() {
  * @returns {Promise} Promise object
  */
 async function getTodoistTasks(filter) {
-    const url = 'https://api.todoist.com/api/v1/tasks/filter'
+	const url = "https://api.todoist.com/api/v1/tasks/filter"
 	var params
 
 	if (filter) {
@@ -29,20 +29,19 @@ async function getTodoistTasks(filter) {
 		throw new Error(`Filter can't be null!`)
 	}
 
-    const apiKey = import.meta.env.PUBLIC_TODOIST_TOKEN
-    const request = new Request(`${url}?${params}`, {
-        method: "GET",
-        headers: new Headers({
-            "Authorization": `Bearer ${apiKey}`
-        })
-    })
-    const response = await fetch(request)
-    if (!response.ok) {
-        displayErrorOnPage(`${response.status} ${response.statusText}`)
+	const apiKey = import.meta.env.PUBLIC_TODOIST_TOKEN
+	const request = new Request(`${url}?${params}`, {
+		method: "GET",
+		headers: new Headers({
+			Authorization: `Bearer ${apiKey}`,
+		}),
+	})
+	const response = await fetch(request)
+	if (!response.ok) {
+		displayErrorOnPage(`${response.status} ${response.statusText}`)
 		throw new Error(`API error ${response.status} ${response.statusText}`)
-
-    }
-    return response.json()
+	}
+	return response.json()
 }
 
 function displayErrorOnPage(error) {
@@ -57,10 +56,12 @@ function displayErrorOnPage(error) {
  * @returns {Object} DOM elements contained in an object
  */
 function catchTodoistDomElements() {
-    return {
-		filter: JSON.parse(document.querySelector("todoist").getAttribute("filter")),
-        container: document.querySelector("todoist-tasks")
-    }
+	return {
+		filter: JSON.parse(
+			document.querySelector("todoist").getAttribute("filter")
+		),
+		container: document.querySelector("todoist-tasks"),
+	}
 }
 
 /**
@@ -70,27 +71,31 @@ function catchTodoistDomElements() {
  * @returns {void} Nothing
  */
 function fillTodoistDomElements(data, dom) {
-    data.results.sort((a, b) => {
-        const dateA = new Date(a.due.date).valueOf()
-        const dateB = new Date(b.due.date).valueOf()
+	data.results.sort((a, b) => {
+		const dateA = new Date(a.due.date).valueOf()
+		const dateB = new Date(b.due.date).valueOf()
 
-        return dateA - dateB
-    })
+		return dateA - dateB
+	})
 
-    for (let task of data.results) {
-        let dueDate = new Date(task.due.date)
-            .toLocaleDateString(import.meta.env.PUBLIC_LOCALE, {year: 'numeric', month: 'numeric', day: 'numeric'})
+	for (let task of data.results) {
+		let dueDate = new Date(task.due.date).toLocaleDateString(
+			import.meta.env.PUBLIC_LOCALE,
+			{ year: "numeric", month: "numeric", day: "numeric" }
+		)
 
-        let taskContainer = document.createElement("todoist-task")
-        taskContainer.id = `todoist-task-${task.id}`
+		let taskContainer = document.createElement("todoist-task")
+		taskContainer.id = `todoist-task-${task.id}`
 
-        dom.container.append(taskContainer)
-        taskContainer.innerHTML = `
+		dom.container.append(taskContainer)
+		taskContainer.innerHTML = `
             <todoist-checkbox></todoist-checkbox>
-            <span class="todoist-task-label" title="${task.content}">${task.content} ${task.labels.toString() ? "@" + task.labels.toString() : "" }</span>
+            <span class="todoist-task-label" title="${task.content}">${
+			task.content
+		} ${task.labels.toString() ? "@" + task.labels.toString() : ""}</span>
             <span class="todoist-task-due">${dueDate}</span>
         `
-    }
+	}
 }
 
 /**
@@ -98,43 +103,43 @@ function fillTodoistDomElements(data, dom) {
  * @returns {void} Nothing
  */
 function addCheckboxListener() {
-    checkboxList = document.querySelectorAll("todoist-checkbox")
+	checkboxList = document.querySelectorAll("todoist-checkbox")
 
-    for (const checkbox of checkboxList) {
-        checkbox.addEventListener('click', async function () {
-            await toggleTaskChecked(this)
-        })
-    }
+	for (const checkbox of checkboxList) {
+		checkbox.addEventListener("click", async function () {
+			await toggleTaskChecked(this)
+		})
+	}
 }
 
 async function toggleTaskChecked(checkbox) {
-    const taskID = checkbox.parentNode.id.replace("todoist-task-", "")
+	const taskID = checkbox.parentNode.id.replace("todoist-task-", "")
 
-    checkbox.innerHTML = (checkbox.innerHTML === "") ? "" : ""
-    checkbox.nextElementSibling.classList.add("todoist-task-strikethrough")
+	checkbox.innerHTML = checkbox.innerHTML === "" ? "" : ""
+	checkbox.nextElementSibling.classList.add("todoist-task-strikethrough")
 
-    // sleep one second while we wait for css animation
-    await new Promise(r => setTimeout(r, 1000))
+	// sleep one second while we wait for css animation
+	await new Promise((r) => setTimeout(r, 1000))
 
-    checkbox.parentElement.style.display = "none"
+	checkbox.parentElement.style.display = "none"
 
-    // slide all the tasks up
-    document.querySelectorAll("todoist-task").forEach(task => {
-        task.classList.add("todoist-task-slide-up")
-    })
+	// slide all the tasks up
+	document.querySelectorAll("todoist-task").forEach((task) => {
+		task.classList.add("todoist-task-slide-up")
+	})
 
-    // wait for animation to finish
-    await new Promise(r => setTimeout(r, 300))
+	// wait for animation to finish
+	await new Promise((r) => setTimeout(r, 300))
 
-    // remove checked task
-    document.getElementById(`todoist-task-${taskID}`).remove()
+	// remove checked task
+	document.getElementById(`todoist-task-${taskID}`).remove()
 
-    // remove animation class from tasks
-    document.querySelectorAll("todoist-task").forEach(task => {
-        task.classList.remove("todoist-task-slide-up")
-    })
+	// remove animation class from tasks
+	document.querySelectorAll("todoist-task").forEach((task) => {
+		task.classList.remove("todoist-task-slide-up")
+	})
 
-    const commands = `[{
+	const commands = `[{
         "type": "item_complete",
         "uuid": "${self.crypto.randomUUID()}",
         "args": {
@@ -142,17 +147,19 @@ async function toggleTaskChecked(checkbox) {
             "date_completed": "${new Date().toISOString()}"
         }
     }]`
-    const url = `https://api.todoist.com/api/v1/sync?commands=${commands}`
-    const apiKey = import.meta.env.PUBLIC_TODOIST_TOKEN
-    const request = new Request(url, {
-        method: "POST",
-        headers: new Headers({
-            "Authorization": `Bearer ${apiKey}`
-        })
-    })
-    const response = await fetch(request)
-    if (!response.ok) {
+	const url = `https://api.todoist.com/api/v1/sync?commands=${commands}`
+	const apiKey = import.meta.env.PUBLIC_TODOIST_TOKEN
+	const request = new Request(url, {
+		method: "POST",
+		headers: new Headers({
+			Authorization: `Bearer ${apiKey}`,
+		}),
+	})
+	const response = await fetch(request)
+	if (!response.ok) {
 		displayErrorOnPage(`${response.status} ${response.statusText}`)
-		throw new Error(`An error has occured: ${response.status} ${response.statusText}`)
-    }
+		throw new Error(
+			`An error has occured: ${response.status} ${response.statusText}`
+		)
+	}
 }

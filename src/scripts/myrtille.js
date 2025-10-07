@@ -5,34 +5,34 @@
  * @returns {void} Nothing
  */
 export function startMyrtilleModule() {
-  getHostnameOnHover()
-  openLink()
+	getHostnameOnHover()
+	openLink()
 }
 
 /**
  * Add an mouse over event listener on each link to display domain name inside the search module if existing
  */
 function getHostnameOnHover() {
-  const myrtilleLinks = [...document.querySelectorAll('.myrtille-link')]
-  const searchInput = document.querySelector('.pp-search-input')
+	const myrtilleLinks = [...document.querySelectorAll(".myrtille-link")]
+	const searchInput = document.querySelector(".pp-search-input")
 
-  for (const link of myrtilleLinks) {
-    link.addEventListener('mouseenter', event => {
-      event.preventDefault()
-      if (searchInput) {
-        searchInput.placeholder = link.hostname
-      }
-    })
-  }
+	for (const link of myrtilleLinks) {
+		link.addEventListener("mouseenter", (event) => {
+			event.preventDefault()
+			if (searchInput) {
+				searchInput.placeholder = link.hostname
+			}
+		})
+	}
 }
 
 function openLink() {
-  const myrtilleLinks = [...document.querySelectorAll('.myrtille-link')]
+	const myrtilleLinks = [...document.querySelectorAll(".myrtille-link")]
 
-  for (const link of myrtilleLinks) {
-    link.addEventListener('click', event => {
-      event.preventDefault()
-      window.open(link.getAttribute('href'), '_self')
-    })
-  }
+	for (const link of myrtilleLinks) {
+		link.addEventListener("click", (event) => {
+			event.preventDefault()
+			window.open(link.getAttribute("href"), "_self")
+		})
+	}
 }
