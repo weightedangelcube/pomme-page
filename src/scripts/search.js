@@ -26,7 +26,8 @@ function sendSearch(event) {
   const input = document.querySelector('.pp-search-input')
 
   if (event.key === 'Enter') {
-    if (input.value.match(/^([a-zA-Z]+)((\.[a-zA-Z]+)*)(\/+.*)$/gm)) {
+	// test if user's input is a real url
+    if (input.value.match(/^([a-zA-Z]+)(\.[a-zA-Z]+)(\/*.*)$/gm)) {
       window.open(`https://${input.value}/`, "_self")
     } else {
       const domain = "https://www.google.com/search"
