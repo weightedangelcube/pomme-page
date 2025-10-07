@@ -12,62 +12,63 @@ import "../styles/styles.css"
 <!doctype html>
 <html lang="en-CA">
 	<head>
-
 		<!-- Important metadata, and the like -->
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width = device-width, initial-scale = 1" />
-        <meta name="robots" content="noindex" />
+		<meta
+			name="viewport"
+			content="width = device-width, initial-scale = 1"
+		/>
+		<meta name="robots" content="noindex" />
 		<meta name="generator" content={Astro.generator} />
 		<title>New Tab</title>
-		
+
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
 		<!-- JavaScript -->
-		<script src="../scripts/app.js" />
-
+		<script src="../scripts/app.js"></script>
 	</head>
 
-    <grid>
+	<grid>
 		<Clock />
-		<Search />
-		<pomme />
-		<pomme-alt />
-		<pomme />
-		<pomme />
-		<pomme />
+		<Search url="https://google.com/search?q=%s&udm=14" />
+		<pomme></pomme>
+		<pomme-alt></pomme-alt>
+		<pomme></pomme>
+		<pomme></pomme>
+		<pomme></pomme>
 		<Myrtille url="https://github.com/" icon="" />
 		<Weather />
-		<pomme-alt />
-		<pomme />
-		<Raisin 
-			title="design" 
+		<pomme-alt></pomme-alt>
+		<pomme></pomme>
+		<Raisin
+			title="design"
 			links=`[
 				{ "title": " godly.website", "url": "https://godly.website/" },
 				{ "title": "󰸌 found.color", "url": "https://foundcolor.co/" },
 				{ "title": " colorcontrast.app", "url": "https://colorcontrast.app/" },
 				{ "title": "󰅴 developer.mozilla", "url": "https://developer.mozilla.org/" }
-				
+
 			]`
 		/>
-		<pomme />
-		<pomme />
-		<pomme-alt />
-		<pomme />
-		<pomme-alt />
-		<pomme />
-		<Todoist />
-		<pomme-alt />
-		<pomme-alt />
-		<pomme />
-		<pomme />
-		<pomme-alt />
-		<pomme />
-		<pomme-alt />
-		<pomme />
-		<pomme />
-		<pomme-alt />
-		<pomme />
-		<pomme />
-    </grid>
+		<pomme></pomme>
+		<pomme></pomme>
+		<pomme-alt></pomme-alt>
+		<pomme></pomme>
+		<pomme-alt></pomme-alt>
+		<pomme></pomme>
+		<Todoist filter=`
+			["query", "5 days | overdue"]
+		` />
+		<pomme-alt></pomme-alt>
+		<pomme-alt></pomme-alt>
+		<pomme></pomme>
+		<pomme></pomme>
+		<pomme-alt></pomme-alt>
+		<pomme></pomme>
+		<pomme-alt></pomme-alt>
+		<pomme></pomme>
+		<pomme></pomme>
+	</grid>
+
 </html>
