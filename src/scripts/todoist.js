@@ -7,8 +7,8 @@ let checkboxList
  */
 export async function startTodoistModule() {
     const dom = catchTodoistDomElements()
-    const data = await getTodoistTasks()
-    
+    const data = await getTodoistTasks(dom.filter)
+
     fillTodoistDomElements(data, dom)
     addCheckboxListener()
 }
@@ -18,11 +18,16 @@ export async function startTodoistModule() {
  * @async
  * @returns {Promise} Promise object
  */
-async function getTodoistTasks() {
+async function getTodoistTasks(filter) {
     const url = 'https://api.todoist.com/api/v1/tasks/filter'
-    const params = new URLSearchParams([
-        ["query", "5 days"]
-    ])
+	var params
+
+	if (filter) {
+		params = new URLSearchParams([filter])
+	} else {
+		throw new Error(`Filter can't be null!`)
+	}
+
     const apiKey = import.meta.env.PUBLIC_TODOIST_TOKEN
     const request = new Request(`${url}?${params}`, {
         method: "GET",
@@ -44,13 +49,14 @@ async function getTodoistTasks() {
  */
 function catchTodoistDomElements() {
     return {
+		filter: JSON.parse(document.querySelector("todoist").getAttribute("filter")),
         container: document.querySelector("todoist-tasks")
     }
 }
 
 /**
  * Fill targeted DOM elements with Todoist API data
- * @param {Object} data Data from the Todoist API 
+ * @param {Object} data Data from the Todoist API
  * @param {Object} dom DOM elements to be filled
  * @returns {void} Nothing
  */
@@ -105,7 +111,7 @@ async function toggleTaskChecked(checkbox) {
 
     // slide all the tasks up
     document.querySelectorAll("todoist-task").forEach(task => {
-        task.classList.add("todoist-task-slide-up") 
+        task.classList.add("todoist-task-slide-up")
     })
 
     // wait for animation to finish
@@ -116,9 +122,9 @@ async function toggleTaskChecked(checkbox) {
 
     // remove animation class from tasks
     document.querySelectorAll("todoist-task").forEach(task => {
-        task.classList.remove("todoist-task-slide-up") 
+        task.classList.remove("todoist-task-slide-up")
     })
-    
+
     const commands = `[{
         "type": "item_complete",
         "uuid": "${self.crypto.randomUUID()}",
