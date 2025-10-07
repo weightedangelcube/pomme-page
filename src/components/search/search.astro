@@ -1,8 +1,9 @@
 ---
 import "../../styles/search.css"
+const { url } = Astro.props
 ---
 
-<pp-search>
-    <span class="pp-search-icon">󰊭</span>
+<pp-search url={url}>
+    <span class="pp-search-icon"></span>
     <input class="pp-search-input" type="text" />
 </pp-search>

@@ -1,6 +1,6 @@
 // //////// SEARCH //////// //
 
-const iconList = document.querySelectorAll('.pp-search-icon')
+const searchURL = document.querySelector("pp-search").getAttribute("url")
 
 /**
  * Main exported function that attaches event handler to specified DOM elements
@@ -8,7 +8,6 @@ const iconList = document.querySelectorAll('.pp-search-icon')
  */
 export function startSearchModule() {
   const searchContainer = document.querySelector('pp-search')
-  
   document.addEventListener('keydown', () => {
     document.querySelector('.pp-search-input').focus()
   })
@@ -30,10 +29,15 @@ function sendSearch(event) {
     if (input.value.match(/^([a-zA-Z]+)(\.[a-zA-Z]+)(\/*.*)$/gm)) {
       window.open(`https://${input.value}/`, "_self")
     } else {
-      const domain = "https://www.google.com/search"
-      window.open(`${domain}?q=${input.value}&udm=14`, "_self")
+	  // proceed if the given url contains %s
+	  if (/%s/.test(searchURL)) {
+		window.open(searchURL.replace("%s", input.value), "_self")
+	  } else {
+		throw new Error("Search URL must contain %s!")
+	  }
     }
-    
     input.value = ''
   }
+
+  // holy nesting bro
 }
