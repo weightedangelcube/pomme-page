@@ -26,7 +26,7 @@ myrtille {
 
 .myrtille-link span {
   text-decoration: none;
-  font-size: 8vh;
-  margin-bottom: 1.5vh;
+  font-size: 4em;
+  margin-bottom: auto;
   color: inherit;
 }
