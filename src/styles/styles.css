@@ -37,7 +37,6 @@ textarea {
 *,
 *::before,
 *::after {
-  font-variant: styleset(ss02) !important;
   box-sizing: border-box;
 }
 
@@ -127,7 +126,7 @@ textarea {
   --font-size-heading: 1.5rem; /* 24px */
   --font-size-subheading: 1.25rem;
   --font-size-body: 0.875rem;
-  
+
   --font-heading: var(--font-weight-bold) var(--font-size-heading) var(--font-family);
   --font-subheading: var(--font-weight-bold) var(--font-size-subheading) var(--font-family);
   --font-body: var(--font-weight-regular) var(--font-size-body) var(--font-family);
@@ -136,8 +135,8 @@ textarea {
   --border-radius: 20px;
   --border-size: 2px;
 
-  --loader-dot-size: 1vw;
-  --loader-dots-gap: 0.75vw;
+  --loader-dot-size: 16px;
+  --loader-dots-gap: 10px;
 
   /* font Modular scale */
   --scale-000: 0.75rem; /* 12px */
@@ -160,11 +159,14 @@ textarea {
   --spacing-4: 64px;
   --spacing-5: 96px;
 
+  --max-width: 120px;
+
+  --padding-outer: 64px;
   --padding-inner: 1.25vw;
 
   /* Grid gaps */
 
-  --grid-gap: 1.25vw;
+  --grid-gap: 24px;
   --gap-00: 12px;
   --gap-0: 16px;
   --gap-1: 24px;
@@ -178,17 +180,17 @@ html {
 
 body {
   /* padding: var(--spacing-4); */
-  padding: 5vh 5vw;
+  padding: var(--padding-outer);
   font-family: var(--font-family-sans);
 }
 
 grid {
   margin: auto;
   display: grid;
-  grid-auto-rows: 3.5vh;
+  grid-auto-rows: 32px;
   grid-auto-flow: dense;
   grid-gap: var(--grid-gap);
-  grid-template-columns: repeat(auto-fit, minmax(7vw, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--max-width), 1fr));
 
 }
 
