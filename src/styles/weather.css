@@ -1,11 +1,9 @@
-/************** weather **************/
-
 pp-weather {
 	display: none;
 	grid-row: span 4;
 	grid-column: span 2;
 	perspective: 400px;
-	animation: module-display 500ms ease-in-out;
+	animation: var(--fadein-anim);
 }
 
 pp-weather-inner {
@@ -35,7 +33,7 @@ pp-weather-back {
 	justify-content: center;
 	width: 100%;
 	height: 100%;
-	padding: var(--spacing-0000) var(--spacing-0);
+	padding: var(--padding-module);
 	backface-visibility: hidden;
 }
 
@@ -61,53 +59,33 @@ pp-weather-humid {
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
+	padding: var(--padding-module-list);
 	width: 100%;
-	height: var(--spacing-2);
 }
+
 
 .city-label,
 .temp-label,
 .humid-label {
 	color: var(--base);
 	font-weight: var(--font-weight-bold);
-	font-size: var(--scale-0);
+	font-size: var(--font-size-body);
 }
 
 .city-value,
 .temp-value,
 .humid-value {
 	color: var(--base);
-	font-weight: var(--font-weight-bold);
-	font-size: var(--scale-0);
+	font-weight: var(--font-weight-regular);
+	font-size: var(--font-size-body);
 }
 
 pp-weather-back {
 	color: var(--mauve);
 	background-color: var(--base);
-	border: 2px solid var(--mauve);
+	border: var(--border-size) solid var(--mauve);
 	border-radius: var(--border-radius);
 	transform: rotateY(-180deg);
-}
-
-.pp-weather-time,
-.pp-weather-date {
-	color: var(--basea);
-	font-weight: var(--font-weight-bold);
-	font-size: var(--scale-3);
-}
-
-pp-weather-linebreak {
-	width: 80%;
-	height: 1px;
-	margin: var(--spacing-000) 0;
-	background: var(--base);
-}
-
-.weather-back-sunrise,
-.weather-back-sunset {
-	margin: var(--spacing-0000) 0;
-	font-weight: var(--font-weight-bold);
-	font-size: var(--scale-1);
 }
 
 pp-weather-loader-container {
@@ -117,7 +95,7 @@ pp-weather-loader-container {
 	align-items: center;
 	justify-content: center;
 	background-color: var(--base);
-	border: 2px solid var(--mauve);
+	border: var(--border-size) solid var(--mauve);
 	border-radius: var(--border-radius);
 }
 
@@ -129,14 +107,13 @@ pp-weather-error-container {
 	align-items: center;
 	justify-content: center;
 	background-color: var(--base);
-	border: 2px solid var(--search-background);
+	border: var(--border-size) solid var(--mauve);
 	border-radius: var(--border-radius);
-	animation: module-display 500ms ease-in-out;
+	animation: module-fadein 500ms ease-in-out;
 }
 
 p.weather-error-code {
-	margin-top: var(--spacing-0);
-	color: var(--search-background);
-	font-weight: var(--font-weight-bold);
-	font-size: var(--scale-2);
+	color: var(--mauve);
+	font-weight: var(--font-weight-regular);
+	font-size: var(--font-size-subheading);
 }

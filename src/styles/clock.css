@@ -1,11 +1,10 @@
-/************** CLOCK **************/
-
 pp-clock {
 	display: flex;
 	grid-row: span 2;
 	grid-column: span 2;
 	background-color: transparent;
 	perspective: 400px;
+	animation: var(--popin-anim);
 }
 
 pp-clock-inner {

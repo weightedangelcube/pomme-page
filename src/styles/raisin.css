@@ -1,23 +1,20 @@
-/************** RAISIN **************/
-
 raisin {
 	display: flex;
 	flex-direction: column;
 	grid-row: span 4;
 	grid-column: span 2;
 	justify-content: space-between;
-	padding: var(--spacing-00) var(--spacing-0);
+	padding: var(--padding-module);
 	background-color: var(--base);
-	border: 2px solid var(--overlay0);
+	border: var(--border-size) solid var(--overlay0);
 	border-radius: var(--border-radius);
-	animation: fadein-page 50ms ease-out normal backwards;
-	animation-delay: 50ms;
+	animation: var(--popin-anim);
 }
 
 .raisin-title {
 	color: var(--text);
 	font-weight: var(--font-weight-bold);
-	font-size: var(--scale-1);
+	font-size: var(--font-size-subheading);
 }
 
 raisin-links {
@@ -26,18 +23,15 @@ raisin-links {
 }
 
 .raisin-link {
-	margin-bottom: 0.1em;
-	padding: var(--spacing-0000) 0;
+	padding: var(--padding-module-list);
 	overflow: hidden;
-	color: inherit;
 	color: var(--text);
-	font-size: var(--scale-00);
+	font-size: var(--font-size-body);
 	white-space: nowrap;
 	text-decoration: none;
 	text-overflow: ellipsis;
 	border-top: 1px dashed var(--text);
 	outline: none;
-	transition: 200ms;
 }
 
 .raisin-link:first-child {

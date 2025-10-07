@@ -1,5 +1,3 @@
-/************** MYRTILLE **************/
-
 myrtille {
 	grid-row: span 2;
 }
@@ -16,7 +14,7 @@ myrtille {
 	border: var(--border-size) solid var(--sky);
 	border-radius: var(--border-radius);
 	transition: 100ms ease-in-out;
-	animation: module-popin 300ms ease-out normal backwards;
+	animation: var(--popin-anim);
 }
 
 .myrtille-link:hover {
