@@ -24,27 +24,20 @@ pp-weather-inner.is-flipped {
 	transform: rotateY(180deg);
 }
 
-pp-weather-front,
-pp-weather-back {
+pp-weather-front {
 	position: absolute;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 	width: 100%;
 	height: 100%;
 	padding: var(--padding-module);
 	backface-visibility: hidden;
-}
-
-pp-weather-front {
 	color: var(--base);
 }
 
 pp-weather-icons {
 	display: flex;
 	flex: 1;
-	align-items: center;
 	justify-content: center;
 }
 
@@ -81,11 +74,46 @@ pp-weather-humid {
 }
 
 pp-weather-back {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: var(--padding-module);
+	backface-visibility: hidden;
+
 	color: var(--mauve);
+	font-size: var(--font-size-body);
 	background-color: var(--base);
 	border: var(--border-size) solid var(--mauve);
 	border-radius: var(--border-radius);
 	transform: rotateY(-180deg);
+}
+
+weather-forecast {
+	padding: var(--padding-module-list);
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 25px;
+	border-top: 1px dashed var(--base);
+	outline: none;
+}
+
+weather-forecast .day {
+	font-weight: var(--font-weight-bold);
+	flex: 0 0 3em;
+}
+
+weather-forecast .icon {
+	position: relative;
+	bottom: 0.25em;
+	font-size: var(--font-size-subheading);
+}
+
+weather-forecast .data {
+	font-feature-settings: "tnum";
+	margin-left: auto;
 }
 
 pp-weather-loader-container {

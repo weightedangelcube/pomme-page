@@ -25,7 +25,7 @@ export async function startWeatherModule() {
  */
 async function getWeatherData() {
 	const url =
-		"https://api.open-meteo.com/v1/forecast?current=temperature_2m,relative_humidity_2m,weather_code,is_day&timezone=auto"
+		"https://api.open-meteo.com/v1/forecast?daily=temperature_2m_max,temperature_2m_min,weather_code&current=temperature_2m,relative_humidity_2m,weather_code,is_day&timezone=auto&forecast_days=7"
 	const latitude = import.meta.env.PUBLIC_WEATHER_LATITUDE_QUERY
 	const longitude = import.meta.env.PUBLIC_WEATHER_LONGITUDE_QUERY
 	const temperature_unit = import.meta.env.PUBLIC_WEATHER_TEMPERATURE_UNIT
@@ -50,12 +50,11 @@ async function getWeatherData() {
 function catchWeatherDomElements() {
 	return {
 		container: document.querySelector("pp-weather"),
+		forecastContainer: document.querySelector("weather-forecast-container"),
 		temperature: document.querySelector(".temp-value"),
 		humid: document.querySelector(".humid-value"),
-		icons: [...document.querySelectorAll(".pp-weather-icon")],
-		cityName: document.querySelector(".city-value"),
-		// sunrise: document.querySelector('.weather-back-sunrise'),
-		// sunset: document.querySelector('.weather-back-sunset'),
+		iconsContainer: document.querySelector("pp-weather-icons"),
+		cityName: document.querySelector(".city-value")
 	}
 }
 
@@ -66,117 +65,83 @@ function catchWeatherDomElements() {
  * @returns {void} Nothing
  */
 function fillWeatherDomElements(data, dom) {
-	let weatherState
-	const isDay = data.current.is_day ? "day" : "night"
+	const isDay = data.current.is_day
+	const weatherState = getWeatherState(data.current.weather_code)
 
-	// I wasn't quite sure how else to implement this
-	// Please don't look at this code
-	switch (data.current.weather_code) {
-		case 0:
-			weatherState = "clear"
-			break
-		case 1:
-			weatherState = "clear"
-			break
-		case 2:
-			weatherState = "part-clouds"
-			break
-		case 3:
-			weatherState = "clouds"
-			break
-		case 45:
-			weatherState = "fog"
-			break
-		case 48:
-			weatherState = "fog"
-			break
-		case 51:
-			weatherState = "drizzle"
-			break
-		case 53:
-			weatherState = "drizzle"
-			break
-		case 55:
-			weatherState = "drizzle"
-			break
-		case 56:
-			weatherState = "freezing-drizzle"
-			break
-		case 57:
-			weatherState = "freezing-drizzle"
-			break
-		case 61:
-			weatherState = "rain"
-			break
-		case 63:
-			weatherState = "rain"
-			break
-		case 65:
-			weatherState = "rain"
-			break
-		case 66:
-			weatherState = "freezing-rain"
-			break
-		case 67:
-			weatherState = "freezing-rain"
-			break
-		case 80:
-			weatherState = "rain"
-			break
-		case 81:
-			weatherState = "rain"
-			break
-		case 82:
-			weatherState = "rain"
-			break
-		case 71:
-			weatherState = "snow"
-			break
-		case 73:
-			weatherState = "snow"
-			break
-		case 75:
-			weatherState = "snow"
-			break
-		case 77:
-			weatherState = "snow"
-			break
-		case 85:
-			weatherState = "snow"
-			break
-		case 86:
-			weatherState = "snow"
-			break
-		case 95:
-			weatherState = "thunderstorm"
-			break
-		case 96:
-			weatherState = "thunderstorm"
-			break
-		case 99:
-			weatherState = "thunderstorm"
-			break
-	}
+	dom.iconsContainer.innerHTML = `
+		<span class="pp-weather-icon">${isDay ? weatherState.iconDay : weatherState.iconNight}</span>
+	`
 
-	for (const icon of dom.icons) {
-		if (
-			icon.id === weatherState ||
-			icon.id === `${weatherState}-${isDay}`
-		) {
-			icon.style.display = "inline"
-		} else {
-			icon.style.display = "none"
-		}
-	}
-
-	dom.cityName.innerHTML = import.meta.env.PUBLIC_WEATHER_CITY_DISPLAY_NAME
-	dom.temperature.innerHTML =
-		data.current.temperature_2m > 0 && data.current.temperature_2m < 10
-			? `0${Math.round(data.current.temperature_2m)}°`
-			: `${Math.round(data.current.temperature_2m)}°`
+	dom.cityName.innerHTML = import.meta.env.PUBLIC_WEATHER_CITY_DISPLAY_NAME ? 
+		import.meta.env.PUBLIC_WEATHER_CITY_DISPLAY_NAME : `${data.latitude}, ${data.longitude}`
+	dom.temperature.innerHTML = formatTemperature(data.current.temperature_2m)
 	dom.humid.innerHTML = `${data.current.relative_humidity_2m}%`
+
+
+	for (let i = 0; i < 7; i++) {
+		let day = new Date(`${data.daily.time[i]}T00:00:00`).toLocaleDateString(import.meta.env.PUBLIC_LOCALE, { weekday: "short" })
+		let low = formatTemperature(data.daily.temperature_2m_min[i])
+		let high = formatTemperature(data.daily.temperature_2m_max[i])
+		let weatherState = getWeatherState(data.daily.weather_code[i])
+
+		let forecast = document.createElement("weather-forecast")
+
+		dom.forecastContainer.append(forecast)
+		forecast.innerHTML = `
+			<span class="day">${day}</span>
+			<span class="icon">${weatherState.iconDay}</span>
+			<span class="data">${low} - ${high}</span>
+		`
+
+	}
 	// dom.sunrise.innerHTML = new Date(data.daily.sunrise[0]).toLocaleTimeString(import.meta.env.PUBLIC_LOCALE)
 	// dom.sunset.innerHTML = new Date(data.daily.sunset[0]).toLocaleTimeString(import.meta.env.PUBLIC_LOCALE)
+}
+
+
+function formatTemperature(value) {
+	if (value > 0 && value < 10) {
+		return `0${Math.round(value)}°`
+	} else {
+		return `${Math.round(value)}°`
+	}
+}
+
+function getWeatherState(code) {
+	let weatherCodes = [];
+	weatherCodes[0]  = { state: "clear",            iconDay: "", iconNight: "" }
+	weatherCodes[1]  = { state: "clear",            iconDay: "", iconNight: "" }
+	weatherCodes[2]  = { state: "part-clouds",      iconDay: "", iconNight: "" }
+	weatherCodes[3]  = { state: "clouds",           iconDay: "", iconNight: "" }
+	weatherCodes[45] = { state: "fog",              iconDay: "", iconNight: "" }
+	weatherCodes[48] = { state: "fog",              iconDay: "", iconNight: "" }
+	weatherCodes[51] = { state: "drizzle",          iconDay: "", iconNight: "" }
+	weatherCodes[53] = { state: "drizzle",          iconDay: "", iconNight: "" }
+	weatherCodes[55] = { state: "drizzle",          iconDay: "", iconNight: "" }
+	weatherCodes[56] = { state: "freezing-drizzle", iconDay: "", iconNight: "" }
+	weatherCodes[57] = { state: "freezing-drizzle", iconDay: "", iconNight: "" }
+	weatherCodes[61] = { state: "rain",             iconDay: "", iconNight: "" }
+	weatherCodes[61] = { state: "rain",             iconDay: "", iconNight: "" }
+	weatherCodes[63] = { state: "rain",             iconDay: "", iconNight: "" }
+	weatherCodes[65] = { state: "rain",             iconDay: "", iconNight: "" }
+	weatherCodes[66] = { state: "freezing-rain",    iconDay: "", iconNight: "" }
+	weatherCodes[67] = { state: "freezing-rain",    iconDay: "", iconNight: "" }
+	weatherCodes[71] = { state: "snow",             iconDay: "", iconNight: "" }
+	weatherCodes[73] = { state: "snow",             iconDay: "", iconNight: "" }
+	weatherCodes[80] = { state: "rain",             iconDay: "", iconNight: "" }
+	weatherCodes[81] = { state: "rain",             iconDay: "", iconNight: "" }
+	weatherCodes[82] = { state: "rain",             iconDay: "", iconNight: "" }
+	weatherCodes[85] = { state: "snow",             iconDay: "", iconNight: "" }
+	weatherCodes[86] = { state: "snow",             iconDay: "", iconNight: "" }
+	weatherCodes[95] = { state: "thunderstorm",     iconDay: "", iconNight: "" }
+	weatherCodes[96] = { state: "thunderstorm",     iconDay: "", iconNight: "" }
+	weatherCodes[99] = { state: "thunderstorm",     iconDay: "", iconNight: "" }
+
+	return {
+		state: weatherCodes[code].state,
+		iconDay: weatherCodes[code].iconDay,
+		iconNight: weatherCodes[code].iconNight
+	}
 }
 
 /**
