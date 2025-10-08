@@ -90,9 +90,7 @@ function fillTodoistDomElements(data, dom) {
 		dom.container.append(taskContainer)
 		taskContainer.innerHTML = `
             <todoist-checkbox></todoist-checkbox>
-            <span class="todoist-task-label" title="${task.content}">${
-			task.content
-		} ${task.labels.toString() ? "@" + task.labels.toString() : ""}</span>
+            <span class="todoist-task-label" title="${task.content}">${task.content} ${task.labels.toString() ? "@" + task.labels.toString() : ""}</span>
             <span class="todoist-task-due">${dueDate}</span>
         `
 	}
