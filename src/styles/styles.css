@@ -89,7 +89,7 @@ textarea {
 
 @font-face {
 	font-family: "Symbols Nerd Font";
-	src: url("/assets/fonts/symbols-nerd-font/symbols-nerd-font-mono.ttf") format("ttf");
+	src: url("/assets/fonts/symbols-nerd-font/symbols-nerd-font-mono.ttf") format("truetype");
 }
 
 /* ---------------------------------- */
