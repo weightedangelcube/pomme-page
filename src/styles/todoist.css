@@ -20,8 +20,15 @@ todoist-error-container {
 	animation: module-fadein 500ms ease-in-out;
 }
 
+todoist-title > p {
+	color: var(--base);
+  	font-weight: var(--font-weight-bold);
+  	font-size: var(--font-size-subheading);
+}
+
 todoist-tasks {
 	position: relative;
+	margin-top: auto;
 	display: flex;
 	flex-direction: column;
 }

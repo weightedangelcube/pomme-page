@@ -1,7 +1,10 @@
 ---
-const { filter } = Astro.props
+const { title, filter } = Astro.props
 ---
 <todoist filter={filter}>
+	<todoist-title>
+		<p>{title}</p>
+	</todoist-title>
     <todoist-tasks>
     </todoist-tasks>
 	<todoist-error-container>
