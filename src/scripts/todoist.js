@@ -22,8 +22,10 @@ async function getTodoistTasks(filter) {
 	const url = "https://api.todoist.com/api/v1/tasks/filter"
 	var params
 
-	if (filter) {
-		params = new URLSearchParams([filter])
+	if (filter) {		
+		params = new URLSearchParams([
+			["query", `${filter}`]
+		])
 	} else {
 		displayErrorOnPage(`Filter can't be null!`)
 		throw new Error(`Filter can't be null!`)
@@ -63,9 +65,7 @@ function displayErrorOnPage(error) {
  */
 function catchTodoistDomElements() {
 	return {
-		filter: JSON.parse(
-			document.querySelector("todoist").getAttribute("filter")
-		),
+		filter: document.querySelector("todoist").getAttribute("filter"),
 		container: document.querySelector("todoist-tasks"),
 	}
 }
