@@ -14,7 +14,7 @@ export async function startTodoistModule() {
 }
 
 /**
- * GET data from the Todoist API. Fetches tasks due in the next five days
+ * GET data from the Todoist API. Fetches tasks from a filter passed in props
  * @async
  * @returns {Promise} Promise object
  */
@@ -44,6 +44,12 @@ async function getTodoistTasks(filter) {
 	return response.json()
 }
 
+
+/**
+ * Displays an error on the page.
+ * @param {string} error The error message to display. 
+ * @returns {void} Nothing
+ */
 function displayErrorOnPage(error) {
 	const errorContainer = document.querySelector("todoist-error-container")
 	const errorText = document.querySelector("todoist-error-container > p")
@@ -110,6 +116,10 @@ function addCheckboxListener() {
 	}
 }
 
+/**
+ * Toggles a task as checked, and syncs its state to the Todoist API.
+ * @param {Element} checkbox The checkbox that was toggled 
+ */
 async function toggleTaskChecked(checkbox) {
 	const taskID = checkbox.parentNode.id.replace("todoist-task-", "")
 

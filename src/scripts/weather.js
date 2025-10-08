@@ -92,13 +92,15 @@ function fillWeatherDomElements(data, dom) {
 			<span class="icon">${weatherState.iconDay}</span>
 			<span class="data">${low} - ${high}</span>
 		`
-
 	}
-	// dom.sunrise.innerHTML = new Date(data.daily.sunrise[0]).toLocaleTimeString(import.meta.env.PUBLIC_LOCALE)
-	// dom.sunset.innerHTML = new Date(data.daily.sunset[0]).toLocaleTimeString(import.meta.env.PUBLIC_LOCALE)
 }
 
-
+/**
+ * Formats the temperature value, adding leading zeroes as needed.
+ * 
+ * @param {number} value The value of the temperature
+ * @returns {string} The formatted temperature
+ */
 function formatTemperature(value) {
 	if (value > 0 && value < 10) {
 		return `0${Math.round(value)}°`
@@ -107,6 +109,11 @@ function formatTemperature(value) {
 	}
 }
 
+/**
+ * Retrieves the weather state from the weather code.
+ * @param {number} code The weather code
+ * @returns {object} An object with the weather data
+ */
 function getWeatherState(code) {
 	let weatherCodes = [];
 	weatherCodes[0]  = { state: "clear",            iconDay: "", iconNight: "" }
@@ -156,22 +163,6 @@ function displayweatherErrorOnPage(response) {
 	errorCode.innerHTML = response.status
 	loaderContainer.style.display = "none"
 	errorContainer.style.display = "flex"
-}
-
-/**
- * Format timestamp to human readable hours and minutes
- * @param {Number} stamp timestamp found in API response for sunrise and sunset
- * @returns {string} time in hours and minutes
- */
-function formatTimestamp(stamp) {
-	const date = new Date(stamp * 1000)
-	let h = date.getHours()
-	let m = date.getMinutes()
-
-	h = h < 10 ? "0" + h : h
-	m = m < 10 ? "0" + m : m
-
-	return `${h}:${m}`
 }
 
 /**

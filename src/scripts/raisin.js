@@ -11,6 +11,7 @@ export function startRaisinModule() {
 
 /**
  * Add an mouse over event listener on each link to display domain name inside the search module if existing
+ * @returns {void} Nothing
  */
 function getHostnameOnHover() {
 	const raisinLinks = [...document.querySelectorAll(".raisin-link")]
@@ -26,6 +27,10 @@ function getHostnameOnHover() {
 	}
 }
 
+/**
+ * Opens the link in the same tab.
+ * @returns {void} Nothing
+ */
 function openLink() {
 	const raisinLinks = [...document.querySelectorAll(".raisin-link")]
 
