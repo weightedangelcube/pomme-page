@@ -192,7 +192,7 @@ pomme {
 	animation: module-popin 200ms ease-out normal backwards;
 }
 
-pomme-alt {
+poire {
 	grid-row: span 2;
 	background-color: var(--text);
 	border-radius: var(--border-radius);
