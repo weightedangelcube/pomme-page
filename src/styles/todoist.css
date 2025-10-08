@@ -63,6 +63,7 @@ todoist-task > span {
 }
 
 .todoist-task-due {
+	font-feature-settings: "tnum";
 	position: absolute;
 	right: 0;
 	flex-grow: 1;
