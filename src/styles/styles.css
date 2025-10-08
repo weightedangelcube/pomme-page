@@ -35,7 +35,7 @@ textarea {
 
 @font-face {
 	font-family: Inter;
-	src: local("Inter Variable") format("ttf");
+	src: url("/assets/fonts/inter/inter.woff2") format("woff2");
 }
 
 @font-feature-values Inter {
@@ -89,7 +89,7 @@ textarea {
 
 @font-face {
 	font-family: "Symbols Nerd Font";
-	src: local("Symbols Nerd Font") format("ttf");
+	src: url("/assets/fonts/symbols-nerd-font/symbols-nerd-font-mono.ttf") format("ttf");
 }
 
 /* ---------------------------------- */
