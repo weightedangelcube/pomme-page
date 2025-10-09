@@ -115,6 +115,7 @@ function formatTemperature(value) {
  * @returns {object} An object with the weather data
  */
 function getWeatherState(code) {
+	console.log(code)
 	let weatherCodes = [];
 	weatherCodes[0]  = { state: "clear",            iconDay: "", iconNight: "" }
 	weatherCodes[1]  = { state: "clear",            iconDay: "", iconNight: "" }
@@ -135,6 +136,7 @@ function getWeatherState(code) {
 	weatherCodes[67] = { state: "freezing-rain",    iconDay: "", iconNight: "" }
 	weatherCodes[71] = { state: "snow",             iconDay: "", iconNight: "" }
 	weatherCodes[73] = { state: "snow",             iconDay: "", iconNight: "" }
+	weatherCodes[75] = { state: "snow",             iconDay: "", iconNight: "" }
 	weatherCodes[80] = { state: "rain",             iconDay: "", iconNight: "" }
 	weatherCodes[81] = { state: "rain",             iconDay: "", iconNight: "" }
 	weatherCodes[82] = { state: "rain",             iconDay: "", iconNight: "" }
