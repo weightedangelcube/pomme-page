@@ -102,10 +102,11 @@ function fillWeatherDomElements(data, dom) {
  * @returns {string} The formatted temperature
  */
 function formatTemperature(value) {
+	value = Math.round(value)
 	if (value > 0 && value < 10) {
-		return `0${Math.round(value)}°`
+		return `0${value}°`
 	} else {
-		return `${Math.round(value)}°`
+		return `${value}°`
 	}
 }
 
