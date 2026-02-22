@@ -8,7 +8,7 @@
 </div>
 
 <p align="center">
-  <img width="700px"  src="./.github/assets/preview.png">
+    <img width="700px"  src="./.github/assets/preview.png">
 </p>
 
 ## Index
@@ -43,9 +43,6 @@
 Pomme will be running at `localhost:4321`. You can use browser extensions like [New Tab Override for Firefox](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) to force your browser to redirect to this page.
 
 Currently, there is no way to disable modules live. To disable a module, comment out its reference in `scripts/app.js` and remove it from `pages/index.astro`.
-
-### Docker
-Coming soon...
 
 ## Modules
 Pomme uses modules to display information: 
