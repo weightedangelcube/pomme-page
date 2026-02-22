@@ -5,14 +5,14 @@ pp-search {
 	align-items: center;
 	justify-content: space-between;
 	padding: var(--padding-module);
-	background-color: var(--pink);
+	background-color: var(--accent-two);
 	border-radius: var(--border-radius);
 	animation: var(--popin-anim);
 }
 
 .pp-search-icon {
 	font-size: var(--font-size-heading);
-	color: var(--base);
+	color: var(--background-color);
 	padding: 0;
 }
 
@@ -20,12 +20,12 @@ pp-search {
 	flex: 1;
 	min-width: 0;
 	margin-left: 12px;
-	color: var(--base);
+	color: var(--background-color);
 	font-size: var(--font-size-subheading);
 	background-color: transparent;
 	background-image: none;
 	border: none;
-	border-bottom: 1px dashed var(--base);
+	border-bottom: 1px dashed var(--background-color);
 	box-shadow: none;
 }
 

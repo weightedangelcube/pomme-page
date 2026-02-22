@@ -5,7 +5,7 @@ todoist {
 	grid-row: span 4;
 	grid-column: span 3;
 	padding: var(--padding-module);
-	background-color: var(--sky);
+	background-color: var(--accent-one);
 	border-radius: var(--border-radius);
 	animation: var(--popin-anim);
 }
@@ -16,12 +16,12 @@ todoist-error-container {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	color: var(--base);
+	color: var(--background-color);
 	animation: module-fadein 500ms ease-in-out;
 }
 
 todoist-title > p {
-	color: var(--base);
+	color: var(--background-color);
   	font-weight: var(--font-weight-bold);
   	font-size: var(--font-size-subheading);
 }
@@ -36,12 +36,12 @@ todoist-tasks {
 todoist-task {
 	padding: var(--padding-module-list);
 	overflow: hidden;
-	color: var(--base);
+	color: var(--background-color);
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	width: 100%;
-	border-top: 1px dashed var(--base);
+	border-top: 1px dashed var(--background-color);
 	outline: none;
 }
 

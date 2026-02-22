@@ -95,6 +95,13 @@ textarea {
 /* ---------------------------------- */
 
 :root {
+	--background-color: var(--base);
+	--border-color: var(--overlay0);           /* this is used to outline some of the monochrome text elements */
+	--text-color: var(--text);
+	--accent-one: var(--sky);
+	--accent-two: var(--pink);
+	--accent-three: var(--mauve);
+
 	/* Colors */
 	/* (copyright Catppuccin Frappe) */
 	--rosewater: #f2d5cf;
@@ -166,7 +173,7 @@ textarea {
 /* ---------------------------------- */
 
 html {
-	background-color: var(--base);
+	background-color: var(--background-color);
 }
 
 body {
@@ -186,15 +193,15 @@ grid {
 
 pomme {
 	grid-row: span 2;
-	background-color: var(--base);
-	border: var(--border-size) solid var(--overlay0);
+	background-color: var(--background-color);
+	border: var(--border-size) solid var(--border-color);
 	border-radius: var(--border-radius);
 	animation: module-popin 200ms ease-out normal backwards;
 }
 
 poire {
 	grid-row: span 2;
-	background-color: var(--text);
+	background-color: var(--text-color);
 	border-radius: var(--border-radius);
 	animation: module-popin 200ms ease-out normal backwards;
 }
@@ -218,7 +225,7 @@ pp-loader-alt {
 pp-loader-dot {
 	width: var(--loader-dot-size);
 	height: var(--loader-dot-size);
-	background-color: var(--base);
+	background-color: var(--background-color);
 	border-radius: 50%;
 	animation: loader-animation 1s linear 1s infinite alternate;
 }
@@ -258,7 +265,7 @@ pp-loader-dot:nth-child(4) {
 
 @keyframes loader-animation {
 	100% {
-		background-color: var(--mauve);
+		background-color: var(--accent-three);
 	}
 }
 

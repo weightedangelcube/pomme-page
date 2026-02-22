@@ -11,7 +11,7 @@ pp-clock-inner {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background-color: var(--mauve);
+	background-color: var(--accent-three);
 	border-radius: var(--border-radius);
 	transform-style: preserve-3d;
 	transition: transform 300ms;
@@ -33,13 +33,13 @@ pp-clock-back {
 }
 
 pp-clock-front {
-	color: var(--base);
+	color: var(--background-color);
 }
 
 pp-clock-back {
-	color: var(--mauve);
-	background-color: var(--base);
-	border: var(--border-size) solid var(--mauve);
+	color: var(--accent-three);
+	background-color: var(--background-color);
+	border: var(--border-size) solid var(--accent-three);
 	border-radius: var(--border-radius);
 	transform: rotateX(180deg);
 }
@@ -49,11 +49,11 @@ pp-clock-inner.is-flipped {
 }
 
 .pp-clock-time {
-	color: var(--main);
+	color: var(--background-color);
 	font: var(--font-heading);
 }
 
 .pp-clock-date {
-	color: var(--mauve);
+	color: var(--accent-three);
 	font: var(--font-heading);
 }

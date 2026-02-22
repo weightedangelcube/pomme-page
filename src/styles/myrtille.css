@@ -8,18 +8,18 @@ myrtille {
 	justify-content: center;
 	width: 100%;
 	height: 100%;
-	background-color: var(--base);
+	background-color: var(--background-color);
 	text-decoration: none;
-	color: var(--sky);
-	border: var(--border-size) solid var(--sky);
+	color: var(--accent-one);
+	border: var(--border-size) solid var(--accent-one);
 	border-radius: var(--border-radius);
 	transition: 100ms ease-in-out;
 	animation: var(--popin-anim);
 }
 
 .myrtille-link:hover {
-	background-color: var(--sky);
-	color: var(--base);
+	background-color: var(--accent-one);
+	color: var(--background-color);
 }
 
 .myrtille-link span {
